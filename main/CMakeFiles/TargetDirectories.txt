@@ -1,3 +1,0 @@
-/media/aamen/main/Projects/C++/Serious/LinaEngine/main/CMakeFiles/main.dir
-/media/aamen/main/Projects/C++/Serious/LinaEngine/main/CMakeFiles/edit_cache.dir
-/media/aamen/main/Projects/C++/Serious/LinaEngine/main/CMakeFiles/rebuild_cache.dir
