@@ -1,0 +1,58 @@
+\hypertarget{classPlane}{}\doxysection{Plane Class Reference}
+\label{classPlane}\index{Plane@{Plane}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classPlane_a7aaabfadd493ef6b75a2814ad8d867ca}\label{classPlane_a7aaabfadd493ef6b75a2814ad8d867ca}} 
+{\bfseries Plane} (float nx, float ny, float nz, float d)
+\item 
+\mbox{\Hypertarget{classPlane_abc9ee28f9e97962b8bba139309d7f665}\label{classPlane_abc9ee28f9e97962b8bba139309d7f665}} 
+{\bfseries Plane} (const \mbox{\hyperlink{classVector3D}{Vector3D}} \&n, float d)
+\item 
+\mbox{\Hypertarget{classPlane_a3a11e807aae1d49a728456460868e7e2}\label{classPlane_a3a11e807aae1d49a728456460868e7e2}} 
+const \mbox{\hyperlink{classVector3D}{Vector3D}} \& {\bfseries get\+Normal} () const
+\item 
+\mbox{\Hypertarget{classPlane_a1017afd1681c0eb1cee5c31c120f4b4a}\label{classPlane_a1017afd1681c0eb1cee5c31c120f4b4a}} 
+float {\bfseries dot} (const \mbox{\hyperlink{classVector3D}{Vector3D}} \&v)
+\item 
+\mbox{\Hypertarget{classPlane_a956880f620ca51ba6cd6d131dbf16dd5}\label{classPlane_a956880f620ca51ba6cd6d131dbf16dd5}} 
+float {\bfseries dot} (const \mbox{\hyperlink{classPoint3D}{Point3D}} \&p)
+\item 
+\mbox{\Hypertarget{classPlane_af3200a379635fda91dbeb8f8c506f702}\label{classPlane_af3200a379635fda91dbeb8f8c506f702}} 
+\mbox{\hyperlink{classPlane}{Plane}} {\bfseries normalise} () const
+\item 
+\mbox{\Hypertarget{classPlane_afe89538dbae0ad5243689d258ee9f74e}\label{classPlane_afe89538dbae0ad5243689d258ee9f74e}} 
+\mbox{\hyperlink{classPoint3D}{Point3D}} {\bfseries intersect} (const \mbox{\hyperlink{classPoint3D}{Point3D}} \&p, const \mbox{\hyperlink{classVector3D}{Vector3D}} \&v)
+\item 
+\mbox{\Hypertarget{classPlane_a35851c87f8bfbeb566b6b1a74cac5b7d}\label{classPlane_a35851c87f8bfbeb566b6b1a74cac5b7d}} 
+\mbox{\hyperlink{classPoint3D}{Point3D}} {\bfseries intersect} (const \mbox{\hyperlink{classPlane}{Plane}} \&p1, const \mbox{\hyperlink{classPlane}{Plane}} \&p2) const
+\item 
+\mbox{\Hypertarget{classPlane_a760229ad30f7d58b04c6bfa13fe31009}\label{classPlane_a760229ad30f7d58b04c6bfa13fe31009}} 
+std\+::pair$<$ \mbox{\hyperlink{classPoint3D}{Point3D}}, \mbox{\hyperlink{classVector3D}{Vector3D}} $>$ {\bfseries intersect} (const \mbox{\hyperlink{classPlane}{Plane}} \&p1)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classPlane_a2f7a59b8eb8e80ecd1918ecbec69e226}\label{classPlane_a2f7a59b8eb8e80ecd1918ecbec69e226}} 
+float {\bfseries x}
+\item 
+\mbox{\Hypertarget{classPlane_abf3955aab6c637ab160abf58ec43ddb9}\label{classPlane_abf3955aab6c637ab160abf58ec43ddb9}} 
+float {\bfseries y}
+\item 
+\mbox{\Hypertarget{classPlane_a0a8c2e7dd58d1520fe9899dd4dc60d3a}\label{classPlane_a0a8c2e7dd58d1520fe9899dd4dc60d3a}} 
+float {\bfseries z}
+\item 
+\mbox{\Hypertarget{classPlane_ae9f16810e94efe9d2e47ed505265ba25}\label{classPlane_ae9f16810e94efe9d2e47ed505265ba25}} 
+float {\bfseries w}
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classPlane_a404c42dbb5e9c176ca9bb4b814ed1aea}\label{classPlane_a404c42dbb5e9c176ca9bb4b814ed1aea}} 
+\mbox{\hyperlink{classPlane}{Plane}} {\bfseries operator$\ast$} (const \mbox{\hyperlink{classPlane}{Plane}} \&f, const \mbox{\hyperlink{classTransform4D}{Transform4D}} \&h)
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Plane.\+hpp\end{DoxyCompactItemize}

@@ -1,0 +1,626 @@
+\hypertarget{classVector3D}{}\doxysection{Vector3D Class Reference}
+\label{classVector3D}\index{Vector3D@{Vector3D}}
+
+
+Inheritance diagram for Vector3D\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=141pt]{classVector3D__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classVector3D_a17ed921510dc931d9686b7d9333f6d57}{Vector3D}} (float x, float y, float z)
+\begin{DoxyCompactList}\small\item\em constrcts a vector from 3 floats \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classVector3D}{Vector3D}} \& \mbox{\hyperlink{classVector3D_a83d5f64613f79d60e080dc04689f1c2b}{operator$\ast$=}} (float s)
+\begin{DoxyCompactList}\small\item\em Scales the Vector by factor of s. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classVector3D}{Vector3D}} \& \mbox{\hyperlink{classVector3D_a645dc0982d4fd81fc96ce56a6cc354a6}{operator/=}} (float s)
+\begin{DoxyCompactList}\small\item\em scales the Vector by a factor of 1 / s \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classVector3D}{Vector3D}} \mbox{\hyperlink{classVector3D_aead48e707aa7876e61ed5dc4589f8f78}{operator-\/}} () const
+\begin{DoxyCompactList}\small\item\em Negation operator. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classVector3D_ae99221c0c16f56cec4edd82833f36199}{magnitude}} () const
+\begin{DoxyCompactList}\small\item\em Calculates the magnitude of the vector. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classVector3D_a2359d9baa515bf7508ecaa39125270ff}{squared\+Magnitude}} () const
+\begin{DoxyCompactList}\small\item\em Calculates the square of the magnitude of vector. This function is provided for efficiency. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classVector3D}{Vector3D}} \mbox{\hyperlink{classVector3D_a73d140a12b079b015c30e0110e2ca33d}{normalise}} () const
+\begin{DoxyCompactList}\small\item\em Scales the vector so it has magnitude of 1. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classVector3D}{Vector3D}} \mbox{\hyperlink{classVector3D_a8897b0cd4e5f15ff62d0917274a04de7}{operator$\ast$}} (const \mbox{\hyperlink{classMatrix3D}{Matrix3D}} \&m)
+\begin{DoxyCompactList}\small\item\em Multiplication version with 3D matrix. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classVector3D}{Vector3D}} \& \mbox{\hyperlink{classVector3D_a66772c7b627b9722a911ba064d165c3e}{operator+=}} (const \mbox{\hyperlink{classVector3D}{Vector3D}} \&v)
+\begin{DoxyCompactList}\small\item\em Adds two vectors component wise. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classVector3D}{Vector3D}} \& \mbox{\hyperlink{classVector3D_a659cecf32e155fa6b6d97344a562df4d}{operator-\/=}} (const \mbox{\hyperlink{classVector3D}{Vector3D}} \&v)
+\begin{DoxyCompactList}\small\item\em Subtracts two vectors component wise. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classVector3D_acba1af2b1547eeaecf34305cfb7e9b49}{dot}} (const \mbox{\hyperlink{classVector3D}{Vector3D}} \&v) const
+\begin{DoxyCompactList}\small\item\em computes the dot product of two vectors \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classVector3D_ae4bd94e676e1a2b64eea788fe8e15c95}{theta}} (const \mbox{\hyperlink{classVector3D}{Vector3D}} \&v) const
+\begin{DoxyCompactList}\small\item\em Finds the angle between two vectors. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classVector3D}{Vector3D}} \mbox{\hyperlink{classVector3D_a21523ad03fe647bc4210597f3718a5db}{cross}} (const \mbox{\hyperlink{classVector3D}{Vector3D}} \&v) const
+\begin{DoxyCompactList}\small\item\em calculates the cross product between two vectors \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classVector3D}{Vector3D}} \mbox{\hyperlink{classVector3D_ac748339aa582c9fb912aac7cb304022a}{project}} (const \mbox{\hyperlink{classVector3D}{Vector3D}} \&v)
+\begin{DoxyCompactList}\small\item\em returns the projects of the current vector on the parameter vector \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classVector3D_ab0156fd8b62e5dfd15890a30e42d49cc}\label{classVector3D_ab0156fd8b62e5dfd15890a30e42d49cc}} 
+\mbox{\hyperlink{classVector3D}{Vector3D}} {\bfseries reject} (const \mbox{\hyperlink{classVector3D}{Vector3D}} \&v)
+\item 
+\mbox{\hyperlink{classVector3D}{Vector3D}} \mbox{\hyperlink{classVector3D_ae6f469c6a0b7d0aca141954408aa3379}{rotate}} (float \mbox{\hyperlink{classVector3D_ae4bd94e676e1a2b64eea788fe8e15c95}{theta}}, const \mbox{\hyperlink{classVector3D}{Vector3D}} \&axis)
+\begin{DoxyCompactList}\small\item\em Rotates a vector with a given amount around a given axis. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classVector3D}{Vector3D}} \mbox{\hyperlink{classVector3D_a4c2f3c3dab16ae9d1e9d553a983c01f1}{rotate\+Quatrenion}} (const \mbox{\hyperlink{classQuatrenion}{Quatrenion}} \&q)
+\begin{DoxyCompactList}\small\item\em rotates a vector \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classVector3D}{Vector3D}} \mbox{\hyperlink{classVector3D_a601f59ab7851a574cdcc81c0c9c0c5cc}{reflect}} (const \mbox{\hyperlink{classVector3D}{Vector3D}} \&axis)
+\begin{DoxyCompactList}\small\item\em Reflects a vector aroud a given axis. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classVector3D}{Vector3D}} \mbox{\hyperlink{classVector3D_a569e3e8c3577c6a48a2a3346141bafc0}{involute}} (const \mbox{\hyperlink{classVector3D}{Vector3D}} \&axis)
+\begin{DoxyCompactList}\small\item\em Involutes a vector (a genaralization of reflection) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classVector3D}{Vector3D}} \mbox{\hyperlink{classVector3D_a74acc32321954220af876aa0618db21d}{scale}} (float s, const \mbox{\hyperlink{classVector3D}{Vector3D}} \&axis)
+\begin{DoxyCompactList}\small\item\em scales a vector with a factor in a given axis \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classVector3D}{Vector3D}} \mbox{\hyperlink{classVector3D_ac00b0fd13c005ff14c19ebb86c57eb07}{skew}} (float \mbox{\hyperlink{classVector3D_ae4bd94e676e1a2b64eea788fe8e15c95}{theta}}, const \mbox{\hyperlink{classVector3D}{Vector3D}} \&vector0, const \mbox{\hyperlink{classVector3D}{Vector3D}} \&vector1)
+\begin{DoxyCompactList}\small\item\em Skews a vector in a given direction with a given angle to its perpendicular direction. The two vectors provided should be Perpendicular to each other. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{classPoint3D}{Point3D}} \mbox{\hyperlink{classVector3D_a8a43f1964350ad47639906ef2c301cf5}{to\+Point}} () const
+\begin{DoxyCompactList}\small\item\em Converts the Vector3d structure to Point structure. \end{DoxyCompactList}\item 
+std\+::tuple$<$ \mbox{\hyperlink{classVector3D}{Vector3D}}, \mbox{\hyperlink{classVector3D}{Vector3D}}, \mbox{\hyperlink{classVector3D}{Vector3D}} $>$ \mbox{\hyperlink{classVector3D_ae464d1866b18f6e00d3e7b4a159fff90}{construct\+Orthonormal}} (const \mbox{\hyperlink{classVector3D}{Vector3D}} \&v1)
+\begin{DoxyCompactList}\small\item\em Constructs orthonormal basis from the current vector and the parameter vector. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classVector3D_ad74a26a2340ebe5ded71f479bdffbffe}{is\+Parallel}} (const \mbox{\hyperlink{classVector3D}{Vector3D}} \&v) const
+\begin{DoxyCompactList}\small\item\em checks if the current and parameter vectors are parallel \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classVector3D_ade8727ed6c8ce29c5a853f6e4c171d8b}{is\+Anti\+Parallel}} (const \mbox{\hyperlink{classVector3D}{Vector3D}} \&v) const
+\begin{DoxyCompactList}\small\item\em Determines whether the specified v is anti parallel with the current vector. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classVector3D_a0a7e57ae00c032786569c6cc84b302c6}{is\+Perpendicular}} (const \mbox{\hyperlink{classVector3D}{Vector3D}} \&v) const
+\begin{DoxyCompactList}\small\item\em Determines whether the specified v is perpendicular to the current vector. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classVector3D_a6e69a90de210acc835232537f1efe10a}{same\+Direction}} (const \mbox{\hyperlink{classVector3D}{Vector3D}} \&v) const
+\begin{DoxyCompactList}\small\item\em checks if the angle between the current Vector and the parameter vector is acute \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classVector3D_a03494ab3681b859d0e85c20dcbd4264c}{opposite\+Direction}} (const \mbox{\hyperlink{classVector3D}{Vector3D}} \&v) const
+\begin{DoxyCompactList}\small\item\em checks if the angle between the current Vector and the parameter vector is obtuse \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classVector3D_aca5d15bdb846448e3cb73b072783f329}\label{classVector3D_aca5d15bdb846448e3cb73b072783f329}} 
+float {\bfseries x}
+\item 
+\mbox{\Hypertarget{classVector3D_a9b6d194fcf526d7d4f9e902421285e94}\label{classVector3D_a9b6d194fcf526d7d4f9e902421285e94}} 
+float {\bfseries y}
+\item 
+\mbox{\Hypertarget{classVector3D_af9728f1eba23b9ee091755346214f391}\label{classVector3D_af9728f1eba23b9ee091755346214f391}} 
+float {\bfseries z}
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classVector3D}{Vector3D}} \mbox{\hyperlink{classVector3D_a6658e7aabb07d954d07e88498e8b8e06}{operator$\ast$}} (const \mbox{\hyperlink{classVector3D}{Vector3D}} \&v, float s)
+\begin{DoxyCompactList}\small\item\em version of multiplication between vector and scalar \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classVector3D_a5927bb788b210435ab8c7059c7cdf0a3}\label{classVector3D_a5927bb788b210435ab8c7059c7cdf0a3}} 
+\mbox{\hyperlink{classVector3D}{Vector3D}} {\bfseries operator$\ast$} (const \mbox{\hyperlink{classVector3D}{Vector3D}} \&n, const \mbox{\hyperlink{classTransform4D}{Transform4D}} \&h)
+\item 
+\mbox{\hyperlink{classVector3D}{Vector3D}} \mbox{\hyperlink{classVector3D_af5294a610ce5a6418d3b520410968e83}{operator/}} (const \mbox{\hyperlink{classVector3D}{Vector3D}} \&v, float s)
+\begin{DoxyCompactList}\small\item\em version of division between vector and scalar \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classVector3D_a26e5fe32ef84043b79c505e0abe3aba9}\label{classVector3D_a26e5fe32ef84043b79c505e0abe3aba9}} 
+\mbox{\hyperlink{classVector3D}{Vector3D}} {\bfseries operator+} (const \mbox{\hyperlink{classVector3D}{Vector3D}} \&v0, const \mbox{\hyperlink{classVector3D}{Vector3D}} \&v1)
+\item 
+\mbox{\Hypertarget{classVector3D_aa13e7e86567ced377518462d921e8dd6}\label{classVector3D_aa13e7e86567ced377518462d921e8dd6}} 
+\mbox{\hyperlink{classVector3D}{Vector3D}} {\bfseries operator-\/} (const \mbox{\hyperlink{classVector3D}{Vector3D}} \&v0, const \mbox{\hyperlink{classVector3D}{Vector3D}} \&v1)
+\item 
+\mbox{\Hypertarget{classVector3D_abe6a44de4db9b9127bab77cb02cd63a5}\label{classVector3D_abe6a44de4db9b9127bab77cb02cd63a5}} 
+std\+::ostream \& {\bfseries operator$<$$<$} (std\+::ostream \&os, const \mbox{\hyperlink{classVector3D}{Vector3D}} \&v)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classVector3D_a17ed921510dc931d9686b7d9333f6d57}\label{classVector3D_a17ed921510dc931d9686b7d9333f6d57}} 
+\index{Vector3D@{Vector3D}!Vector3D@{Vector3D}}
+\index{Vector3D@{Vector3D}!Vector3D@{Vector3D}}
+\doxysubsubsection{\texorpdfstring{Vector3D()}{Vector3D()}}
+{\footnotesize\ttfamily Vector3\+D\+::\+Vector3D (\begin{DoxyParamCaption}\item[{float}]{x,  }\item[{float}]{y,  }\item[{float}]{z }\end{DoxyParamCaption})}
+
+
+
+constrcts a vector from 3 floats 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & first coordinate \\
+\hline
+{\em y} & second coordinate \\
+\hline
+{\em z} & third coordinate \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classVector3D_ae464d1866b18f6e00d3e7b4a159fff90}\label{classVector3D_ae464d1866b18f6e00d3e7b4a159fff90}} 
+\index{Vector3D@{Vector3D}!constructOrthonormal@{constructOrthonormal}}
+\index{constructOrthonormal@{constructOrthonormal}!Vector3D@{Vector3D}}
+\doxysubsubsection{\texorpdfstring{constructOrthonormal()}{constructOrthonormal()}}
+{\footnotesize\ttfamily std\+::tuple$<$\mbox{\hyperlink{classVector3D}{Vector3D}}, \mbox{\hyperlink{classVector3D}{Vector3D}}, \mbox{\hyperlink{classVector3D}{Vector3D}}$>$ Vector3\+D\+::construct\+Orthonormal (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classVector3D}{Vector3D}} \&}]{v1 }\end{DoxyParamCaption})}
+
+
+
+Constructs orthonormal basis from the current vector and the parameter vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v1} & Second vector to construct the orthonormal triplet with\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A tuple of 3 orthonormal normalised vectors 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classVector3D_a21523ad03fe647bc4210597f3718a5db}\label{classVector3D_a21523ad03fe647bc4210597f3718a5db}} 
+\index{Vector3D@{Vector3D}!cross@{cross}}
+\index{cross@{cross}!Vector3D@{Vector3D}}
+\doxysubsubsection{\texorpdfstring{cross()}{cross()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classVector3D}{Vector3D}} Vector3\+D\+::cross (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classVector3D}{Vector3D}} \&}]{v }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+calculates the cross product between two vectors 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & a const reference to the second vector\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a 3D vector equivalent to the current vector crossed with the parameter vector 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classVector3D_acba1af2b1547eeaecf34305cfb7e9b49}\label{classVector3D_acba1af2b1547eeaecf34305cfb7e9b49}} 
+\index{Vector3D@{Vector3D}!dot@{dot}}
+\index{dot@{dot}!Vector3D@{Vector3D}}
+\doxysubsubsection{\texorpdfstring{dot()}{dot()}}
+{\footnotesize\ttfamily float Vector3\+D\+::dot (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classVector3D}{Vector3D}} \&}]{v }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+computes the dot product of two vectors 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & a const referencethe vector to compute the dot product with\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a float with value equal to the dot product of the two vectors 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classVector3D_a569e3e8c3577c6a48a2a3346141bafc0}\label{classVector3D_a569e3e8c3577c6a48a2a3346141bafc0}} 
+\index{Vector3D@{Vector3D}!involute@{involute}}
+\index{involute@{involute}!Vector3D@{Vector3D}}
+\doxysubsubsection{\texorpdfstring{involute()}{involute()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classVector3D}{Vector3D}} Vector3\+D\+::involute (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classVector3D}{Vector3D}} \&}]{axis }\end{DoxyParamCaption})}
+
+
+
+Involutes a vector (a genaralization of reflection) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em axis} & The axis to involute on\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a new 3d vector resulting from involuting the current vector about the parameter vector 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classVector3D_ade8727ed6c8ce29c5a853f6e4c171d8b}\label{classVector3D_ade8727ed6c8ce29c5a853f6e4c171d8b}} 
+\index{Vector3D@{Vector3D}!isAntiParallel@{isAntiParallel}}
+\index{isAntiParallel@{isAntiParallel}!Vector3D@{Vector3D}}
+\doxysubsubsection{\texorpdfstring{isAntiParallel()}{isAntiParallel()}}
+{\footnotesize\ttfamily bool Vector3\+D\+::is\+Anti\+Parallel (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classVector3D}{Vector3D}} \&}]{v }\end{DoxyParamCaption}) const}
+
+
+
+Determines whether the specified v is anti parallel with the current vector. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em v} & parameter vector\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the specified v is anti parallel to current vector , False otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classVector3D_ad74a26a2340ebe5ded71f479bdffbffe}\label{classVector3D_ad74a26a2340ebe5ded71f479bdffbffe}} 
+\index{Vector3D@{Vector3D}!isParallel@{isParallel}}
+\index{isParallel@{isParallel}!Vector3D@{Vector3D}}
+\doxysubsubsection{\texorpdfstring{isParallel()}{isParallel()}}
+{\footnotesize\ttfamily bool Vector3\+D\+::is\+Parallel (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classVector3D}{Vector3D}} \&}]{v }\end{DoxyParamCaption}) const}
+
+
+
+checks if the current and parameter vectors are parallel 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & const reference to parameter vector\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the specified v is parallel to current vector, False otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classVector3D_a0a7e57ae00c032786569c6cc84b302c6}\label{classVector3D_a0a7e57ae00c032786569c6cc84b302c6}} 
+\index{Vector3D@{Vector3D}!isPerpendicular@{isPerpendicular}}
+\index{isPerpendicular@{isPerpendicular}!Vector3D@{Vector3D}}
+\doxysubsubsection{\texorpdfstring{isPerpendicular()}{isPerpendicular()}}
+{\footnotesize\ttfamily bool Vector3\+D\+::is\+Perpendicular (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classVector3D}{Vector3D}} \&}]{v }\end{DoxyParamCaption}) const}
+
+
+
+Determines whether the specified v is perpendicular to the current vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & parameter vector\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the parameter vector and the current vector are perpendicular, False otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classVector3D_ae99221c0c16f56cec4edd82833f36199}\label{classVector3D_ae99221c0c16f56cec4edd82833f36199}} 
+\index{Vector3D@{Vector3D}!magnitude@{magnitude}}
+\index{magnitude@{magnitude}!Vector3D@{Vector3D}}
+\doxysubsubsection{\texorpdfstring{magnitude()}{magnitude()}}
+{\footnotesize\ttfamily float Vector3\+D\+::magnitude (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Calculates the magnitude of the vector. 
+
+\begin{DoxyReturn}{Returns}
+returns the magnitude of vector as float 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classVector3D_a73d140a12b079b015c30e0110e2ca33d}\label{classVector3D_a73d140a12b079b015c30e0110e2ca33d}} 
+\index{Vector3D@{Vector3D}!normalise@{normalise}}
+\index{normalise@{normalise}!Vector3D@{Vector3D}}
+\doxysubsubsection{\texorpdfstring{normalise()}{normalise()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classVector3D}{Vector3D}} Vector3\+D\+::normalise (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Scales the vector so it has magnitude of 1. 
+
+\begin{DoxyReturn}{Returns}
+the normalised vector 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classVector3D_a8897b0cd4e5f15ff62d0917274a04de7}\label{classVector3D_a8897b0cd4e5f15ff62d0917274a04de7}} 
+\index{Vector3D@{Vector3D}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Vector3D@{Vector3D}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classVector3D}{Vector3D}} Vector3\+D\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classMatrix3D}{Matrix3D}} \&}]{m }\end{DoxyParamCaption})}
+
+
+
+Multiplication version with 3D matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & a const reference to the matrix\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A 3D vector with components equal to dot product with each row in the matrix 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classVector3D_a83d5f64613f79d60e080dc04689f1c2b}\label{classVector3D_a83d5f64613f79d60e080dc04689f1c2b}} 
+\index{Vector3D@{Vector3D}!operator$\ast$=@{operator$\ast$=}}
+\index{operator$\ast$=@{operator$\ast$=}!Vector3D@{Vector3D}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$=()}{operator*=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classVector3D}{Vector3D}}\& Vector3\+D\+::operator$\ast$= (\begin{DoxyParamCaption}\item[{float}]{s }\end{DoxyParamCaption})}
+
+
+
+Scales the Vector by factor of s. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & scaling factor\+: a float\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The scaled vector 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classVector3D_a66772c7b627b9722a911ba064d165c3e}\label{classVector3D_a66772c7b627b9722a911ba064d165c3e}} 
+\index{Vector3D@{Vector3D}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!Vector3D@{Vector3D}}
+\doxysubsubsection{\texorpdfstring{operator+=()}{operator+=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classVector3D}{Vector3D}}\& Vector3\+D\+::operator+= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classVector3D}{Vector3D}} \&}]{v }\end{DoxyParamCaption})}
+
+
+
+Adds two vectors component wise. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & a const reference to the vector to add to current vector\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a reference to the updated vector 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classVector3D_aead48e707aa7876e61ed5dc4589f8f78}\label{classVector3D_aead48e707aa7876e61ed5dc4589f8f78}} 
+\index{Vector3D@{Vector3D}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!Vector3D@{Vector3D}}
+\doxysubsubsection{\texorpdfstring{operator-\/()}{operator-()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classVector3D}{Vector3D}} Vector3\+D\+::operator-\/ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Negation operator. 
+
+\begin{DoxyReturn}{Returns}
+Same vector in opossite direction 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classVector3D_a659cecf32e155fa6b6d97344a562df4d}\label{classVector3D_a659cecf32e155fa6b6d97344a562df4d}} 
+\index{Vector3D@{Vector3D}!operator-\/=@{operator-\/=}}
+\index{operator-\/=@{operator-\/=}!Vector3D@{Vector3D}}
+\doxysubsubsection{\texorpdfstring{operator-\/=()}{operator-=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classVector3D}{Vector3D}}\& Vector3\+D\+::operator-\/= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classVector3D}{Vector3D}} \&}]{v }\end{DoxyParamCaption})}
+
+
+
+Subtracts two vectors component wise. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & a const reference to the vector to subtract\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a reference to the updated vector 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classVector3D_a645dc0982d4fd81fc96ce56a6cc354a6}\label{classVector3D_a645dc0982d4fd81fc96ce56a6cc354a6}} 
+\index{Vector3D@{Vector3D}!operator/=@{operator/=}}
+\index{operator/=@{operator/=}!Vector3D@{Vector3D}}
+\doxysubsubsection{\texorpdfstring{operator/=()}{operator/=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classVector3D}{Vector3D}}\& Vector3\+D\+::operator/= (\begin{DoxyParamCaption}\item[{float}]{s }\end{DoxyParamCaption})}
+
+
+
+scales the Vector by a factor of 1 / s 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & inverse of scaling factor\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The scaled vector 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classVector3D_a03494ab3681b859d0e85c20dcbd4264c}\label{classVector3D_a03494ab3681b859d0e85c20dcbd4264c}} 
+\index{Vector3D@{Vector3D}!oppositeDirection@{oppositeDirection}}
+\index{oppositeDirection@{oppositeDirection}!Vector3D@{Vector3D}}
+\doxysubsubsection{\texorpdfstring{oppositeDirection()}{oppositeDirection()}}
+{\footnotesize\ttfamily bool Vector3\+D\+::opposite\+Direction (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classVector3D}{Vector3D}} \&}]{v }\end{DoxyParamCaption}) const}
+
+
+
+checks if the angle between the current Vector and the parameter vector is obtuse 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em v} & parameter vector\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the angle is greater than 90, False otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classVector3D_ac748339aa582c9fb912aac7cb304022a}\label{classVector3D_ac748339aa582c9fb912aac7cb304022a}} 
+\index{Vector3D@{Vector3D}!project@{project}}
+\index{project@{project}!Vector3D@{Vector3D}}
+\doxysubsubsection{\texorpdfstring{project()}{project()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classVector3D}{Vector3D}} Vector3\+D\+::project (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classVector3D}{Vector3D}} \&}]{v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+returns the projects of the current vector on the parameter vector 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & a const reference to the vector to be projected on\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a 3d vector equal to the projection of the current vector on the parameter vector 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classVector3D_a601f59ab7851a574cdcc81c0c9c0c5cc}\label{classVector3D_a601f59ab7851a574cdcc81c0c9c0c5cc}} 
+\index{Vector3D@{Vector3D}!reflect@{reflect}}
+\index{reflect@{reflect}!Vector3D@{Vector3D}}
+\doxysubsubsection{\texorpdfstring{reflect()}{reflect()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classVector3D}{Vector3D}} Vector3\+D\+::reflect (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classVector3D}{Vector3D}} \&}]{axis }\end{DoxyParamCaption})}
+
+
+
+Reflects a vector aroud a given axis. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em axis} & The axis to reflect on\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a new 3d vector resulting from the reflection of the current one on the parameter vector 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classVector3D_ae6f469c6a0b7d0aca141954408aa3379}\label{classVector3D_ae6f469c6a0b7d0aca141954408aa3379}} 
+\index{Vector3D@{Vector3D}!rotate@{rotate}}
+\index{rotate@{rotate}!Vector3D@{Vector3D}}
+\doxysubsubsection{\texorpdfstring{rotate()}{rotate()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classVector3D}{Vector3D}} Vector3\+D\+::rotate (\begin{DoxyParamCaption}\item[{float}]{theta,  }\item[{const \mbox{\hyperlink{classVector3D}{Vector3D}} \&}]{axis }\end{DoxyParamCaption})}
+
+
+
+Rotates a vector with a given amount around a given axis. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em theta} & the angle to rotate with in radians \\
+\hline
+{\em axis} & The axis to rotate around\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new 3D vector equal to the rotation of the current around the parameter vector with angle theta 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classVector3D_a4c2f3c3dab16ae9d1e9d553a983c01f1}\label{classVector3D_a4c2f3c3dab16ae9d1e9d553a983c01f1}} 
+\index{Vector3D@{Vector3D}!rotateQuatrenion@{rotateQuatrenion}}
+\index{rotateQuatrenion@{rotateQuatrenion}!Vector3D@{Vector3D}}
+\doxysubsubsection{\texorpdfstring{rotateQuatrenion()}{rotateQuatrenion()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classVector3D}{Vector3D}} Vector3\+D\+::rotate\+Quatrenion (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classQuatrenion}{Quatrenion}} \&}]{q }\end{DoxyParamCaption})}
+
+
+
+rotates a vector 
+
+
+\begin{DoxyParams}{Parameters}
+{\em q} & a const reference quatrention to rotate based on\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a new 3d Vector resulting from the rotation of the current vector with Quaterenion q 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classVector3D_a6e69a90de210acc835232537f1efe10a}\label{classVector3D_a6e69a90de210acc835232537f1efe10a}} 
+\index{Vector3D@{Vector3D}!sameDirection@{sameDirection}}
+\index{sameDirection@{sameDirection}!Vector3D@{Vector3D}}
+\doxysubsubsection{\texorpdfstring{sameDirection()}{sameDirection()}}
+{\footnotesize\ttfamily bool Vector3\+D\+::same\+Direction (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classVector3D}{Vector3D}} \&}]{v }\end{DoxyParamCaption}) const}
+
+
+
+checks if the angle between the current Vector and the parameter vector is acute 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & parameter vector\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the angle is less than 90, False otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classVector3D_a74acc32321954220af876aa0618db21d}\label{classVector3D_a74acc32321954220af876aa0618db21d}} 
+\index{Vector3D@{Vector3D}!scale@{scale}}
+\index{scale@{scale}!Vector3D@{Vector3D}}
+\doxysubsubsection{\texorpdfstring{scale()}{scale()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classVector3D}{Vector3D}} Vector3\+D\+::scale (\begin{DoxyParamCaption}\item[{float}]{s,  }\item[{const \mbox{\hyperlink{classVector3D}{Vector3D}} \&}]{axis }\end{DoxyParamCaption})}
+
+
+
+scales a vector with a factor in a given axis 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & the scaling factor \\
+\hline
+{\em axis} & the direction to scale parallel to\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a new 3d vector resulting from the scaling of the current vector by a factor of s in the axis direction 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classVector3D_ac00b0fd13c005ff14c19ebb86c57eb07}\label{classVector3D_ac00b0fd13c005ff14c19ebb86c57eb07}} 
+\index{Vector3D@{Vector3D}!skew@{skew}}
+\index{skew@{skew}!Vector3D@{Vector3D}}
+\doxysubsubsection{\texorpdfstring{skew()}{skew()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classVector3D}{Vector3D}} Vector3\+D\+::skew (\begin{DoxyParamCaption}\item[{float}]{theta,  }\item[{const \mbox{\hyperlink{classVector3D}{Vector3D}} \&}]{vector0,  }\item[{const \mbox{\hyperlink{classVector3D}{Vector3D}} \&}]{vector1 }\end{DoxyParamCaption})}
+
+
+
+Skews a vector in a given direction with a given angle to its perpendicular direction. The two vectors provided should be Perpendicular to each other. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em theta} & The angle with the normal parameter \\
+\hline
+{\em vector0} & const reference to a vector representing skew direction. \\
+\hline
+{\em vector1} & The normal to skew direction vector\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a 3d vector resulting from skewing the current vector in vector0 direction with angle theta with vector1 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classVector3D_a2359d9baa515bf7508ecaa39125270ff}\label{classVector3D_a2359d9baa515bf7508ecaa39125270ff}} 
+\index{Vector3D@{Vector3D}!squaredMagnitude@{squaredMagnitude}}
+\index{squaredMagnitude@{squaredMagnitude}!Vector3D@{Vector3D}}
+\doxysubsubsection{\texorpdfstring{squaredMagnitude()}{squaredMagnitude()}}
+{\footnotesize\ttfamily float Vector3\+D\+::squared\+Magnitude (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Calculates the square of the magnitude of vector. This function is provided for efficiency. 
+
+\begin{DoxyReturn}{Returns}
+a float represented the squared magnitude. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classVector3D_ae4bd94e676e1a2b64eea788fe8e15c95}\label{classVector3D_ae4bd94e676e1a2b64eea788fe8e15c95}} 
+\index{Vector3D@{Vector3D}!theta@{theta}}
+\index{theta@{theta}!Vector3D@{Vector3D}}
+\doxysubsubsection{\texorpdfstring{theta()}{theta()}}
+{\footnotesize\ttfamily float Vector3\+D\+::theta (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classVector3D}{Vector3D}} \&}]{v }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Finds the angle between two vectors. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & a const reference the vector to find the angle with\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a float representing the angle in radians 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classVector3D_a8a43f1964350ad47639906ef2c301cf5}\label{classVector3D_a8a43f1964350ad47639906ef2c301cf5}} 
+\index{Vector3D@{Vector3D}!toPoint@{toPoint}}
+\index{toPoint@{toPoint}!Vector3D@{Vector3D}}
+\doxysubsubsection{\texorpdfstring{toPoint()}{toPoint()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{classPoint3D}{Point3D}} Vector3\+D\+::to\+Point (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Converts the Vector3d structure to Point structure. 
+
+\begin{DoxyReturn}{Returns}
+Point representation of the current vector. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{classVector3D_a6658e7aabb07d954d07e88498e8b8e06}\label{classVector3D_a6658e7aabb07d954d07e88498e8b8e06}} 
+\index{Vector3D@{Vector3D}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Vector3D@{Vector3D}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$}{operator*}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classVector3D}{Vector3D}} operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classVector3D}{Vector3D}} \&}]{v,  }\item[{float}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+version of multiplication between vector and scalar 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & vector; must be lefthand operand \\
+\hline
+{\em s} & scalar; must be righthand operand\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new Vector with components (s $\ast$ x, s $\ast$ y, s $\ast$ z) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classVector3D_af5294a610ce5a6418d3b520410968e83}\label{classVector3D_af5294a610ce5a6418d3b520410968e83}} 
+\index{Vector3D@{Vector3D}!operator/@{operator/}}
+\index{operator/@{operator/}!Vector3D@{Vector3D}}
+\doxysubsubsection{\texorpdfstring{operator/}{operator/}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classVector3D}{Vector3D}} operator/ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classVector3D}{Vector3D}} \&}]{v,  }\item[{float}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+version of division between vector and scalar 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & vector; must be lefthand operand \\
+\hline
+{\em s} & scalar; must be righthand operand\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new Vector with components (x / s, y / s, z / s) 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Vector3\+D.\+hpp\end{DoxyCompactItemize}

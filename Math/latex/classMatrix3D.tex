@@ -1,0 +1,58 @@
+\hypertarget{classMatrix3D}{}\doxysection{Matrix3D Class Reference}
+\label{classMatrix3D}\index{Matrix3D@{Matrix3D}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classMatrix3D_a2456e868e08fc543ac0933a7e1457856}\label{classMatrix3D_a2456e868e08fc543ac0933a7e1457856}} 
+{\bfseries Matrix3D} (float n00, float n01, float n02, float n10, float n11, float n12, float n20, float n21, float n22)
+\item 
+\mbox{\Hypertarget{classMatrix3D_a73d9bbd6846b459bb000d8cf82b8bc81}\label{classMatrix3D_a73d9bbd6846b459bb000d8cf82b8bc81}} 
+{\bfseries Matrix3D} (const \mbox{\hyperlink{classVector3D}{Vector3D}} \&v0, const \mbox{\hyperlink{classVector3D}{Vector3D}} \&v1, const \mbox{\hyperlink{classVector3D}{Vector3D}} \&v2)
+\item 
+\mbox{\Hypertarget{classMatrix3D_ae44ce12f56a97fd58842e183d189227d}\label{classMatrix3D_ae44ce12f56a97fd58842e183d189227d}} 
+float \& {\bfseries operator()} (int i, int j)
+\item 
+\mbox{\Hypertarget{classMatrix3D_ad571200a0fa09b5b2cea2f86babd462d}\label{classMatrix3D_ad571200a0fa09b5b2cea2f86babd462d}} 
+const float \& {\bfseries operator()} (int i, int j) const
+\item 
+\mbox{\Hypertarget{classMatrix3D_a044b500a5ee531998d7bf1b46a257ae0}\label{classMatrix3D_a044b500a5ee531998d7bf1b46a257ae0}} 
+\mbox{\hyperlink{classVector3D}{Vector3D}} \& {\bfseries operator\mbox{[}$\,$\mbox{]}} (int j)
+\item 
+\mbox{\Hypertarget{classMatrix3D_ab6efb2cdaa9d4d68061e566062d6c5e2}\label{classMatrix3D_ab6efb2cdaa9d4d68061e566062d6c5e2}} 
+const \mbox{\hyperlink{classVector3D}{Vector3D}} \& {\bfseries operator\mbox{[}$\,$\mbox{]}} (int j) const
+\item 
+\mbox{\Hypertarget{classMatrix3D_a5bf91d533d8ed653a076aada0ab93a0c}\label{classMatrix3D_a5bf91d533d8ed653a076aada0ab93a0c}} 
+float {\bfseries determinant} () const
+\item 
+\mbox{\Hypertarget{classMatrix3D_aaef6c8d82fa8a9c0920701c5b48dff51}\label{classMatrix3D_aaef6c8d82fa8a9c0920701c5b48dff51}} 
+float {\bfseries at\+Pos} (int i, int j)
+\item 
+\mbox{\Hypertarget{classMatrix3D_ae1d2e9df95025d7aa279e907f54bf114}\label{classMatrix3D_ae1d2e9df95025d7aa279e907f54bf114}} 
+const float {\bfseries at\+Pos} (int i, int j) const
+\item 
+\mbox{\Hypertarget{classMatrix3D_aed1643dcc421d6504451109cb2cd8141}\label{classMatrix3D_aed1643dcc421d6504451109cb2cd8141}} 
+const \mbox{\hyperlink{classMatrix3D}{Matrix3D}} {\bfseries inverse} () const
+\item 
+\mbox{\Hypertarget{classMatrix3D_ae975133b3d1961f84a63576aebf4d350}\label{classMatrix3D_ae975133b3d1961f84a63576aebf4d350}} 
+const \mbox{\hyperlink{classMatrix3D}{Matrix3D}} {\bfseries adjugate} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classMatrix3D_a9a8a6f646af80543d8a6696692fc7527}\label{classMatrix3D_a9a8a6f646af80543d8a6696692fc7527}} 
+\mbox{\hyperlink{classMatrix3D}{Matrix3D}} {\bfseries operator$\ast$} (const \mbox{\hyperlink{classMatrix3D}{Matrix3D}} \&m0, const \mbox{\hyperlink{classMatrix3D}{Matrix3D}} \&m1)
+\item 
+\mbox{\Hypertarget{classMatrix3D_a5d3d9fdafb632d437b530c471736eb74}\label{classMatrix3D_a5d3d9fdafb632d437b530c471736eb74}} 
+\mbox{\hyperlink{classVector3D}{Vector3D}} {\bfseries operator$\ast$} (const \mbox{\hyperlink{classMatrix3D}{Matrix3D}} \&m, const \mbox{\hyperlink{classVector3D}{Vector3D}} \&v)
+\item 
+\mbox{\Hypertarget{classMatrix3D_acd95ecca4388120434bc018c5e8ead49}\label{classMatrix3D_acd95ecca4388120434bc018c5e8ead49}} 
+\mbox{\hyperlink{classMatrix3D}{Matrix3D}} {\bfseries operator$\ast$} (const \mbox{\hyperlink{classMatrix3D}{Matrix3D}} \&m, float s)
+\item 
+\mbox{\Hypertarget{classMatrix3D_ab5372163f90b70afd40ad5123e53ac21}\label{classMatrix3D_ab5372163f90b70afd40ad5123e53ac21}} 
+std\+::ostream \& {\bfseries operator$<$$<$} (std\+::ostream \&os, const \mbox{\hyperlink{classMatrix3D}{Matrix3D}} \&m)
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Matrix.\+hpp\end{DoxyCompactItemize}

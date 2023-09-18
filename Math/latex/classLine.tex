@@ -1,0 +1,134 @@
+\hypertarget{classLine}{}\doxysection{Line Class Reference}
+\label{classLine}\index{Line@{Line}}
+
+
+Collaboration diagram for Line\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=157pt]{classLine__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classLine_a79268a50a5df21a7e4052e06b25ea0de}\label{classLine_a79268a50a5df21a7e4052e06b25ea0de}} 
+\mbox{\hyperlink{classLine_a79268a50a5df21a7e4052e06b25ea0de}{Line}} ()=default
+\begin{DoxyCompactList}\small\item\em line default constructor \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classLine_a3fd2fe242fef16aba7c8962f5e432e2e}{Line}} (float vx, float vy, float vz, float mx, float my, float mz)
+\begin{DoxyCompactList}\small\item\em constructor with 6 floats, the first three for direction vector, the other three for moment vector \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classLine_a9f17e268e3422325daed2cc177ba144f}{Line}} (const \mbox{\hyperlink{classVector3D}{Vector3D}} \&v, const \mbox{\hyperlink{classVector3D}{Vector3D}} \&m)
+\begin{DoxyCompactList}\small\item\em constructor with two vectors, direction vector and moment vector \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classLine_a3994e41db0278f7a55446d6046e3d43c}{Line}} (const \mbox{\hyperlink{classPoint3D}{Point3D}} \&p, const \mbox{\hyperlink{classVector3D}{Vector3D}} \&v)
+\begin{DoxyCompactList}\small\item\em constructor with a point and direction vector. The moment vector is the cross product of p and v \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classLine_af7700ff8972ba8ad11110cff64e3bdbe}{Line}} (const \mbox{\hyperlink{classPoint3D}{Point3D}} \&p)
+\begin{DoxyCompactList}\small\item\em constructor treating p as a vector for direction. Moment is a 0 vector \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classLine_a4576e3cea74d602e6724843c90b015c4}{distance}} (const \mbox{\hyperlink{classLine}{Line}} \&l)
+\begin{DoxyCompactList}\small\item\em find the distance between the current line and the parameter line. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classLine_a2de80e14d932dcf9eace8d2f39e77227}\label{classLine_a2de80e14d932dcf9eace8d2f39e77227}} 
+float {\bfseries distance} (const \mbox{\hyperlink{classPoint3D}{Point3D}} \&p)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classLine_ab2b126c3d9b9e38fae9c2bc324e2ce8d}\label{classLine_ab2b126c3d9b9e38fae9c2bc324e2ce8d}} 
+\mbox{\hyperlink{classVector3D}{Vector3D}} \mbox{\hyperlink{classLine_ab2b126c3d9b9e38fae9c2bc324e2ce8d}{direction}}
+\begin{DoxyCompactList}\small\item\em direction vector \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classLine_a87da948c85881d488376a63804256bd8}\label{classLine_a87da948c85881d488376a63804256bd8}} 
+\mbox{\hyperlink{classVector3D}{Vector3D}} \mbox{\hyperlink{classLine_a87da948c85881d488376a63804256bd8}{moment}}
+\begin{DoxyCompactList}\small\item\em moment vector \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classLine_a3fd2fe242fef16aba7c8962f5e432e2e}\label{classLine_a3fd2fe242fef16aba7c8962f5e432e2e}} 
+\index{Line@{Line}!Line@{Line}}
+\index{Line@{Line}!Line@{Line}}
+\doxysubsubsection{\texorpdfstring{Line()}{Line()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily Line\+::\+Line (\begin{DoxyParamCaption}\item[{float}]{vx,  }\item[{float}]{vy,  }\item[{float}]{vz,  }\item[{float}]{mx,  }\item[{float}]{my,  }\item[{float}]{mz }\end{DoxyParamCaption})}
+
+
+
+constructor with 6 floats, the first three for direction vector, the other three for moment vector 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em vx} & direction vector x component \\
+\hline
+\mbox{\texttt{ in}}  & {\em vy} & direction vector y component \\
+\hline
+\mbox{\texttt{ in}}  & {\em vz} & direction vector z component \\
+\hline
+\mbox{\texttt{ in}}  & {\em mx} & moment vector x component \\
+\hline
+\mbox{\texttt{ in}}  & {\em my} & moment vector y component \\
+\hline
+\mbox{\texttt{ in}}  & {\em mz} & moment vector z component \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classLine_a9f17e268e3422325daed2cc177ba144f}\label{classLine_a9f17e268e3422325daed2cc177ba144f}} 
+\index{Line@{Line}!Line@{Line}}
+\index{Line@{Line}!Line@{Line}}
+\doxysubsubsection{\texorpdfstring{Line()}{Line()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily Line\+::\+Line (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classVector3D}{Vector3D}} \&}]{v,  }\item[{const \mbox{\hyperlink{classVector3D}{Vector3D}} \&}]{m }\end{DoxyParamCaption})}
+
+
+
+constructor with two vectors, direction vector and moment vector 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em v} & direction vector \\
+\hline
+\mbox{\texttt{ in}}  & {\em m} & moment vector \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classLine_a3994e41db0278f7a55446d6046e3d43c}\label{classLine_a3994e41db0278f7a55446d6046e3d43c}} 
+\index{Line@{Line}!Line@{Line}}
+\index{Line@{Line}!Line@{Line}}
+\doxysubsubsection{\texorpdfstring{Line()}{Line()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily Line\+::\+Line (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classPoint3D}{Point3D}} \&}]{p,  }\item[{const \mbox{\hyperlink{classVector3D}{Vector3D}} \&}]{v }\end{DoxyParamCaption})}
+
+
+
+constructor with a point and direction vector. The moment vector is the cross product of p and v 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em p} & base point \\
+\hline
+\mbox{\texttt{ in}}  & {\em v} & direction vector \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classLine_af7700ff8972ba8ad11110cff64e3bdbe}\label{classLine_af7700ff8972ba8ad11110cff64e3bdbe}} 
+\index{Line@{Line}!Line@{Line}}
+\index{Line@{Line}!Line@{Line}}
+\doxysubsubsection{\texorpdfstring{Line()}{Line()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily Line\+::\+Line (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classPoint3D}{Point3D}} \&}]{p }\end{DoxyParamCaption})}
+
+
+
+constructor treating p as a vector for direction. Moment is a 0 vector 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em p} & base point as-\/vector \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classLine_a4576e3cea74d602e6724843c90b015c4}\label{classLine_a4576e3cea74d602e6724843c90b015c4}} 
+\index{Line@{Line}!distance@{distance}}
+\index{distance@{distance}!Line@{Line}}
+\doxysubsubsection{\texorpdfstring{distance()}{distance()}}
+{\footnotesize\ttfamily float Line\+::distance (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classLine}{Line}} \&}]{l }\end{DoxyParamCaption})}
+
+
+
+find the distance between the current line and the parameter line. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Line.\+hpp\end{DoxyCompactItemize}

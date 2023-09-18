@@ -1,0 +1,79 @@
+\hypertarget{classQuatrenion}{}\doxysection{Quatrenion Class Reference}
+\label{classQuatrenion}\index{Quatrenion@{Quatrenion}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classQuatrenion_a8b129c5d93c5ce4e73b2d765372341e7}\label{classQuatrenion_a8b129c5d93c5ce4e73b2d765372341e7}} 
+{\bfseries Quatrenion} (float x, float y, float z, float w)
+\item 
+\mbox{\Hypertarget{classQuatrenion_ab57374b7e7ec2ce9425772ad4844cacf}\label{classQuatrenion_ab57374b7e7ec2ce9425772ad4844cacf}} 
+{\bfseries Quatrenion} (const \mbox{\hyperlink{classVector3D}{Vector3D}} \&v, float w)
+\item 
+\mbox{\Hypertarget{classQuatrenion_a9a84a95de4b5b09468270c842b6fb4d5}\label{classQuatrenion_a9a84a95de4b5b09468270c842b6fb4d5}} 
+const \mbox{\hyperlink{classVector3D}{Vector3D}} \& {\bfseries get\+Vector} () const
+\item 
+\mbox{\Hypertarget{classQuatrenion_acb3381fe5798d75ab5b577b0b69c1e95}\label{classQuatrenion_acb3381fe5798d75ab5b577b0b69c1e95}} 
+float {\bfseries magnitude} () const
+\item 
+\mbox{\Hypertarget{classQuatrenion_a8ef27be38d19f196585a4278215fb2a1}\label{classQuatrenion_a8ef27be38d19f196585a4278215fb2a1}} 
+float {\bfseries squared\+Magnitude} () const
+\item 
+\mbox{\Hypertarget{classQuatrenion_a517bc201343d63ba7d8d7c2cc70623b7}\label{classQuatrenion_a517bc201343d63ba7d8d7c2cc70623b7}} 
+\mbox{\hyperlink{classQuatrenion}{Quatrenion}} {\bfseries normalise} () const
+\item 
+\mbox{\Hypertarget{classQuatrenion_a2c6fbb2e7e6de123e842b97ecbe1aade}\label{classQuatrenion_a2c6fbb2e7e6de123e842b97ecbe1aade}} 
+\mbox{\hyperlink{classMatrix3D}{Matrix3D}} {\bfseries get\+Rotation\+Matrix} () const
+\item 
+\mbox{\Hypertarget{classQuatrenion_ad7098bff3febf815414a656e2d713e90}\label{classQuatrenion_ad7098bff3febf815414a656e2d713e90}} 
+void {\bfseries set\+Rotation\+Matrix} (const \mbox{\hyperlink{classMatrix3D}{Matrix3D}} \&m)=delete
+\item 
+\mbox{\Hypertarget{classQuatrenion_a61e2f72cbcb0b8a699b579c711f09c8d}\label{classQuatrenion_a61e2f72cbcb0b8a699b579c711f09c8d}} 
+\mbox{\hyperlink{classQuatrenion}{Quatrenion}} {\bfseries conjugate} () const
+\item 
+\mbox{\Hypertarget{classQuatrenion_ab3046c66749a6e2f41e22b6eea640ffc}\label{classQuatrenion_ab3046c66749a6e2f41e22b6eea640ffc}} 
+\mbox{\hyperlink{classQuatrenion}{Quatrenion}} {\bfseries inverse} () const
+\item 
+\mbox{\Hypertarget{classQuatrenion_a545f823c85d8d863abc2ee7f3a567ecc}\label{classQuatrenion_a545f823c85d8d863abc2ee7f3a567ecc}} 
+float {\bfseries theta} (const \mbox{\hyperlink{classQuatrenion}{Quatrenion}} \&q) const
+\item 
+\mbox{\Hypertarget{classQuatrenion_a5456a8fb142e3c557625d873385da074}\label{classQuatrenion_a5456a8fb142e3c557625d873385da074}} 
+float {\bfseries dot} (const \mbox{\hyperlink{classQuatrenion}{Quatrenion}} \&q) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classQuatrenion_ab09d5eb957cbd7ea5211fa412f26e8c2}\label{classQuatrenion_ab09d5eb957cbd7ea5211fa412f26e8c2}} 
+float {\bfseries x}
+\item 
+\mbox{\Hypertarget{classQuatrenion_a3e62a8d47a5533db83e70e90faf9b751}\label{classQuatrenion_a3e62a8d47a5533db83e70e90faf9b751}} 
+float {\bfseries y}
+\item 
+\mbox{\Hypertarget{classQuatrenion_abbf6ce5bde81875ec402eec201448b1c}\label{classQuatrenion_abbf6ce5bde81875ec402eec201448b1c}} 
+float {\bfseries z}
+\item 
+\mbox{\Hypertarget{classQuatrenion_a6c906032d4841e9983e30fac9ff8f594}\label{classQuatrenion_a6c906032d4841e9983e30fac9ff8f594}} 
+float {\bfseries w}
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classQuatrenion_a6aa45b2e4876fefedf82e11677c497e3}\label{classQuatrenion_a6aa45b2e4876fefedf82e11677c497e3}} 
+\mbox{\hyperlink{classQuatrenion}{Quatrenion}} {\bfseries operator$\ast$} (const \mbox{\hyperlink{classQuatrenion}{Quatrenion}} \&q0, const \mbox{\hyperlink{classQuatrenion}{Quatrenion}} \&q1)
+\item 
+\mbox{\Hypertarget{classQuatrenion_aa2c5f8dfd19913008103727782bf28d4}\label{classQuatrenion_aa2c5f8dfd19913008103727782bf28d4}} 
+\mbox{\hyperlink{classQuatrenion}{Quatrenion}} {\bfseries operator+} (const \mbox{\hyperlink{classQuatrenion}{Quatrenion}} \&q0, const \mbox{\hyperlink{classQuatrenion}{Quatrenion}} \&q1)
+\item 
+\mbox{\Hypertarget{classQuatrenion_a5f99bebe57fc764ebafe06df472d803f}\label{classQuatrenion_a5f99bebe57fc764ebafe06df472d803f}} 
+\mbox{\hyperlink{classQuatrenion}{Quatrenion}} {\bfseries operator$\ast$} (const \mbox{\hyperlink{classQuatrenion}{Quatrenion}} \&q0, float s)
+\item 
+\mbox{\Hypertarget{classQuatrenion_a3c4d21111e87175c82201f3631917ceb}\label{classQuatrenion_a3c4d21111e87175c82201f3631917ceb}} 
+\mbox{\hyperlink{classQuatrenion}{Quatrenion}} {\bfseries operator/} (const \mbox{\hyperlink{classQuatrenion}{Quatrenion}} \&q0, float s)
+\item 
+\mbox{\Hypertarget{classQuatrenion_a1b0a2013648bd3c93ba1daff00aa964f}\label{classQuatrenion_a1b0a2013648bd3c93ba1daff00aa964f}} 
+std\+::ostream \& {\bfseries operator$<$$<$} (std\+::ostream \&os, const \mbox{\hyperlink{classQuatrenion}{Quatrenion}} \&q)
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Quatrenion.\+hpp\end{DoxyCompactItemize}
