@@ -1,0 +1,8 @@
+*.txt
+LearningDocs
+CMakeFiles
+*.cmake
+Makefile
+quickTest
+main
+Assets
