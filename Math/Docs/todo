@@ -1,6 +1,0 @@
-ToDo{
-	Implement Letters - {A, B, C, O, P, Q}
-	Rewrite the Plane class to work with lines
-	Change the name of functions to start with lower case and members with m
-	Implement Wedge Product
-}
