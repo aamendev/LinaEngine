@@ -1,7 +1,7 @@
 #pragma once
 
 #include <functional>
-
+#include <string>
 namespace Lina{ namespace Events{
     enum class Type
     {
@@ -28,7 +28,7 @@ namespace Lina{ namespace Events{
     class Event
     {
         public:
-            virtual ~Event();
+            virtual ~Event() = default;
             bool handled = false;
 
             virtual Type getType() const = 0;

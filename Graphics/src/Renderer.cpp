@@ -1,5 +1,5 @@
 #include "../Renderer.h"
-namespace Lina{ namespace Graphics{
+namespace Lina{ namespace Manager{
 
     void Renderer::enableCulling(){
         glEnable(GL_CULL_FACE);

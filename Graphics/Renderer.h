@@ -1,6 +1,6 @@
 #pragma once
 #include "../main/LinaGraphics.h"
-namespace Lina{ namespace Graphics{
+namespace Lina{ namespace Manager{
     struct IndexedDrawingSpecifications
     {
 	    GLenum primitive;

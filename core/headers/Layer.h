@@ -1,15 +1,16 @@
 #pragma once
 #include "../Events/Events.h"
-namespace Lina {
+#include "TimeStep.h"
+namespace Lina { namespace Core{
     class Layer
     {
         virtual ~Layer();
 
         virtual void onAttach() {}
         virtual void onDetach() {}
-        virtual void onUpdate() {}
+        virtual void onUpdate() {TimeStep ts}
         virtual void onEvent(Event& e) {}
 
     };
 
-}
+}}
