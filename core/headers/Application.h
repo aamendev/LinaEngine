@@ -14,7 +14,7 @@ namespace Lina { namespace Core{
     {
         public:
             Application();
-            Application(Graphics::Window& window);
+            Application(Graphics::Window& window, Root& root);
             virtual ~Application() = default;
 
             void onEvent(Events::Event& e);
@@ -37,7 +37,7 @@ namespace Lina { namespace Core{
           //  std::vector<Layer> mLayers;
             float mLastFrameTime = 0.0f;
         private:
-            Root mRoot;
+            Root* mRoot;
             //friend int ::main();
     };
     Application* CreateApplication();

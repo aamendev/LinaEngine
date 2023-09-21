@@ -1,9 +1,10 @@
 #include "../headers/Application.h"
 
 namespace Lina{ namespace Core{
-    Application::Application(Graphics::Window& window)
+    Application::Application(Graphics::Window& window, Root& root)
     {
         mWindow = &window;
+        mRoot = &root;
         mWindow->setEventCallBack(FORWARD_CALL(Application::onEvent));
         mRunning = true;
     }
@@ -19,6 +20,11 @@ namespace Lina{ namespace Core{
         {
             mWindow->clear();
             mWindow->update();
+            if (mRoot->mInputManager->isKeyPressed(Key::Q))
+            {
+                std::cout<<"Closing Now...";
+                mRunning = false;
+            }
         }
     }
     bool Application::onWindowClose(Events::WindowClose& e)
@@ -28,6 +34,6 @@ namespace Lina{ namespace Core{
     }
     bool Application::onWindowResize(Events::WindowResize& e)
     {
-       mRoot.mRenderManager->setViewPort(0, 0, e.getWidth(), e.getHeight());
+       mRoot->mRenderManager->setViewPort(0, 0, e.getWidth(), e.getHeight());
     }
 }}

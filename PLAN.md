@@ -17,3 +17,10 @@ Root { Pointer to Managers }
     UI;
     Events;
 }
+API
+{
+    APP(Root);
+    App.init();
+    App.update();
+    App.shutdown();
+}

@@ -24,7 +24,7 @@ namespace Lina{ namespace Graphics{
             void setEventCallBack(const EventCallBackFunction& callBack) {mWindowPointer.EventCallBack = callBack;}
             void getWidth() const;
             void getHeight() const;
-            void getWindow() const;
+            GLFWwindow* getWindow() const {return mWindow;}
             void getWindowTitle() const;
             bool init();
         private:
