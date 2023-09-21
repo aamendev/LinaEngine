@@ -21,17 +21,17 @@ namespace Lina{ namespace Graphics{
             void update();
 
             void setColour(float r, float g, float b, float a);
-            void setEventCallBack(const EventCallBackFunction& callBack);
+            void setEventCallBack(const EventCallBackFunction& callBack) {mWindowPointer.EventCallBack = callBack;}
             void getWidth() const;
             void getHeight() const;
             void getWindow() const;
             void getWindowTitle() const;
+            bool init();
         private:
             GLFWwindow *mWindow;
             bool mClosed;
             WindowPointer mWindowPointer;
         private:
-            bool init();
             void handleEvents();
     };
 }}

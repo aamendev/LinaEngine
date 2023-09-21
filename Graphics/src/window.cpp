@@ -35,49 +35,19 @@ namespace Lina{namespace Graphics{
     {
         glfwSetWindowUserPointer(mWindow, &mWindowPointer);
 
-        glfwSetWindowSizeCallback(mWindow, WindowResize);
+        glfwSetWindowSizeCallback(mWindow, Callbacks::WindowResize);
 
-        glfwSetWindowCloseCallback(mWindow, WindowClose);
+        glfwSetWindowCloseCallback(mWindow, Callbacks::WindowClose);
 
-        /*glfwSetKeyCallback(mWindow, [](GLFWWindow * window, int key, int scancode,
-                                        int action, int mode);
-                {
-                    WindowPointer& p = *reinterpret_cast<WindowPointer *>(glfwGetWindowUserPointer(window));
+        glfwSetKeyCallback(mWindow, Callbacks::Key);
 
-                    Events::KeyPressed event(key);
-                    p.EventCallBack(event);
-                });
+        glfwSetCharCallback(mWindow, Callbacks::Char);
 
-        glfwSetCharCallback(mWindow, [](GLFWWindow * window, unsigned int keycode)
-                {
-                    WindowPointer& p = *reinterpret_cast<WindowPointer *>(glfwGetWindowUserPointer(window));
+        glfwSetMouseButtonCallback(mWindow, Callbacks::MouseButton);
 
-                    Events::KeyTyped event(keycode);
-                    p.EventCallBack(event);
-                });
+        glfwSetScrollCallback(mWindow, Callbacks::Scroll);
 
-        glfwSetMouseButtonCallback(mWindow, [](GLFWWindow * window, int button, int action, int mods)
-                {
-                    WindowPointer& p = *reinterpret_cast<WindowPointer *>(glfwGetWindowUserPointer(window));
-
-                    Events::MouseReleased event(button);
-                    p.EventCallBack(event);
-                });
-
-        glfwSetScrollCallback(mWindow, [](GLFWWindow * window, double xOffset, double yOffset)
-                {
-                    WindowPointer& p = *reinterpret_cast<WindowPointer *>(glfwGetWindowUserPointer(window));
-
-                    Events::MouseScrolled event(static_cast<float>(xOffset), static_cast<float>(yOffset));
-                    p.EventCallBack(event);
-                });
-
-        glfwSetCursorPosCallback(mWindow, [](mWidnow, [](GLFWwindow* window, double xPos, double yPos)
-                    {
-                        WindowPointer& p = *reinterpret_cast<WindowPointer *>(glfwGetWindowUserPointer(window));
-                        Events::MouseMoves event(static_cast<float>xPos, static_cast<float>yPos);
-                        p.EventCallBack(event);
-                    });*/
+        glfwSetCursorPosCallback(mWindow, Callbacks::CursorPosition);
 
     }
 	void Window::clear() const{

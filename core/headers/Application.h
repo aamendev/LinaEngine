@@ -1,5 +1,9 @@
 #pragma once
-
+#include "../../main/LinaGraphics.h"
+#include "../../Events/Events.h"
+#include "../headers/Root.h"
+#include "Macros.h"
+//#include "../headers/Layer.h"
 namespace Lina { namespace Core{
     struct ApplicationSpecifications
     {
@@ -9,32 +13,32 @@ namespace Lina { namespace Core{
     class Application
     {
         public:
-            Root(const RootSpecifications& specs);
-            virtual ~Root();
+            Application();
+            Application(Graphics::Window& window);
+            virtual ~Application() = default;
 
             void onEvent(Events::Event& e);
 
-            void pushLayer(Layer& layer);
-            void popLayer();
 
-            Window& getWindow() { return mWindow; }
+            Graphics::Window& getWindow() { return *mWindow; }
 
             void close();
-            const getSpecifications() const { return mSepcs; }
-        private:
+            const ApplicationSpecifications getSpecifications() const { return mSpecs; }
             void run();
+            Graphics::Window* mWindow;
+        private:
             bool onWindowClose(Events::WindowClose& e);
             bool onWindowResize(Events::WindowResize& e);
 
         private:
             ApplicationSpecifications mSpecs;
-            std::unique_ptr<Window> mWindow;
             bool mRunning;
             bool mMinimized;
-            std::vector<Layer> mLayers;
+          //  std::vector<Layer> mLayers;
             float mLastFrameTime = 0.0f;
-        prviate:
-            static Root* mRootInstance;
-            friend int ::main(int argc, char** argv);
+        private:
+            Root mRoot;
+            //friend int ::main();
     };
+    Application* CreateApplication();
 }}

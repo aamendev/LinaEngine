@@ -6,6 +6,7 @@ namespace Lina{ namespace Events{
 
     class MouseMoved : public Event
     {
+        public:
         MouseMoved(const float x, const float y): mX(x), mY(y){}
         float getX() const { return mX; }
         float getY() const { return mY; }
@@ -24,6 +25,7 @@ namespace Lina{ namespace Events{
     };
     class MouseScrolled : public Event
     {
+        public:
         MouseScrolled(const float x, const float y): mX(x), mY(y){}
         float getX() const { return mX; }
         float getY() const { return mY; }

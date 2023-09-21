@@ -5,6 +5,7 @@ namespace Lina{ namespace Core{
     class Root
     {
         public:
+            Root() = default;
             Root(Manager::Renderer& renderer)
             {
                 mRenderManager = std::make_unique<Manager::Renderer>(renderer);

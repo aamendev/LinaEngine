@@ -1,12 +1,10 @@
 #include "../headers/LayerStack.h"
 
 namespace Lina { namespace Core{
-    LayerStack::pushLayer(Layer& layer)
+    void LayerStack::pushLayer()
     {
-        mLayers.emplace_back(layer);
     }
-    LayerStack::popLayer()
+    void LayerStack::popLayer()
     {
-        mLayers.pop_back();
     }
 }}

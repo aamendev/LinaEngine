@@ -25,5 +25,6 @@ namespace Lina{ namespace Manager{
             void setFrontFace(GLenum face);
             void enableBlending(GLenum blendFunction1, GLenum blendFunction2);
             void disableBlending();
+            void setViewPort(unsigned int x, unsigned int y, unsigned int width, unsigned int heigth);
     };
 }}

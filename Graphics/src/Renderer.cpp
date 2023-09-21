@@ -23,5 +23,8 @@ namespace Lina{ namespace Manager{
     void Renderer::drawArray(const ArrayDrawingSpecifications& aspec){
 	    glDrawArrays(aspec.primitive, aspec.first, aspec.count);
     }
-
+    void Renderer::setViewPort(unsigned int x, unsigned int y, unsigned int width, unsigned int heigth)
+    {
+        glViewport(x, y, width, heigth);
+    }
 }}
