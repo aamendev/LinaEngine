@@ -1,9 +1,9 @@
 #pragma once
-#include "Point3D.hpp"
-#include "segment.hpp"
-#include "Plane.hpp"
-#include "Sphere.hpp"
-namespace Lina{
+#include "Point3D.h"
+#include "segment.h"
+#include "Plane.h"
+#include "Sphere.h"
+namespace Lina{ namespace Math{
 	class AABB{
 		public:
 			Point3D min;
@@ -51,7 +51,7 @@ namespace Lina{
 			 * @brief      calculated the squared distance to a point
 			 *
 			 * @param[in]  p     The point
-			 * 
+			 *
 			 * @return     a float number equal to the distance
 			 */
 			float squaredDistance(const Point3D& p) const;
@@ -89,4 +89,4 @@ namespace Lina{
 			bool intersects(const AABB& b) const;
 
 	};
-}
+}}

@@ -1,6 +1,6 @@
-#include "../segment.hpp"
+#include "../segment.h"
 #include <cmath>
-namespace Lina{
+namespace Lina{ namespace Math{
 	Segment::Segment(const Point3D& p0, const Point3D& p1): p0(p0) , p1(p1) {}
 	Segment::Segment(float length, const Point3D& p0, const Vector3D& direction){
 		this->p0 = p0;
@@ -19,4 +19,4 @@ namespace Lina{
 	Vector3D Segment::direction() const{
 		return (p1 - p0).normalise();
 	}
-}
+}}

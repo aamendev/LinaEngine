@@ -1,8 +1,8 @@
 #pragma once
-#include "Point3D.hpp"
-#include "Vector3D.hpp"
-#include "Line.hpp"
-namespace Lina{
+#include "Point3D.h"
+#include "Vector3D.h"
+#include "Line.h"
+namespace Lina{ namespace Math{
 	class Ray{
 		public:
 			Point3D base;
@@ -27,4 +27,4 @@ namespace Lina{
 			 */
 			float distance(const Point3D& p) const;
 	};
-}
+}}

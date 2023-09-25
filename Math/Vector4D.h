@@ -1,7 +1,7 @@
 #pragma once
 #include <cmath>
 #include <iostream>
-namespace Lina{
+namespace Lina{ namespace Math{
 	class Matrix4D;
 	class Vector4D{
 	public:
@@ -70,4 +70,4 @@ namespace Lina{
 	inline Vector4D Vector4D::Reject(const Vector4D& v){
 		return (*this - v * (this->Dot(v) / v.Dot(v)));
 	}
-}
+}}

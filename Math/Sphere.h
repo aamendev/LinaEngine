@@ -1,8 +1,8 @@
 #pragma once
-#include "Point3D.hpp"
-#include "Vector4D.hpp"
-#include "Ray.hpp"
-namespace Lina{
+#include "Point3D.h"
+#include "Vector4D.h"
+#include "Ray.h"
+namespace Lina{ namespace Math{
 	class Sphere{
 		public:
 			Point3D centre;
@@ -29,14 +29,14 @@ namespace Lina{
 			 */
 			void setRadius(float radius);
 			/**
-			 * @brief      Creates a 4D vector represention of the circle 
+			 * @brief      Creates a 4D vector represention of the circle
 			 *             (Cx, Cy, Cz, r)
 			 *
 			 * @return     A 4D vector reprsenting the circle
 			 */
 			Vector4D vectorRep() const;
 			/**
-			 * @brief      Determines if the current sphere intersects with 
+			 * @brief      Determines if the current sphere intersects with
 			 *             parameter sphere
 			 *
 			 * @param  S    parameter sphere
@@ -45,7 +45,7 @@ namespace Lina{
 			 */
 			bool intersects(const Sphere& S) const;
 			/**
-			 * @brief      Determines if the current sphere intersects with 
+			 * @brief      Determines if the current sphere intersects with
 			 *             a ray or not
 			 *
 			 * @param  r    the ray
@@ -54,4 +54,4 @@ namespace Lina{
 			 */
 			bool intersects(const Ray& r) const;
 	};
-}
+}}

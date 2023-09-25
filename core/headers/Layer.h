@@ -10,7 +10,6 @@ namespace Lina { namespace Core{
         virtual void onDetach() {}
         virtual void onUpdate(TimeStep ts) {}
         virtual void onEvent(Events::Event& e) {}
-
     };
 
 }}

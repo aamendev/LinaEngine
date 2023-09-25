@@ -1,8 +1,8 @@
-#include "../Plane.hpp"
+#include "../Plane.h"
 #include <cfloat>
 #include <cmath>
 #include <stdexcept>
-namespace Lina{
+namespace Lina{ namespace Math{
 	Plane::Plane(float nx, float ny, float nz, float d):
 	x(nx), y(ny), z(nz), w(d){}
 	Plane::Plane(const Vector3D& v, float d):
@@ -67,4 +67,4 @@ namespace Lina{
 			f.x * h(0, 3) + f.y * h(1, 3) + f.z * h(2, 3) + f.w
 			);
 	}
-}
+}}

@@ -1,9 +1,9 @@
 #pragma once
-#include "Vector3D.hpp"
-#include "Point3D.hpp"
-#include "Transform4D.hpp"
+#include "Vector3D.h"
+#include "Point3D.h"
+#include "Transform4D.h"
 #include <utility>
-namespace Lina{
+namespace Lina{ namespace Math{
 	class Plane{
 	public:
 		float x, y, z , w;
@@ -21,4 +21,4 @@ namespace Lina{
 		friend Plane operator *(const Plane& f, const Transform4D& h);
         float getDistanceFromOrigin() const;
 	};
-}
+}}

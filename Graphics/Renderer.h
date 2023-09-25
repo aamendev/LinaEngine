@@ -1,5 +1,7 @@
 #pragma once
 #include "../main/LinaGraphics.h"
+#include "../Graphics/Renderable.h"
+#include "../ECS/include/Entity.h"
 namespace Lina{ namespace Manager{
     struct IndexedDrawingSpecifications
     {
@@ -19,6 +21,9 @@ namespace Lina{ namespace Manager{
         public:
             Renderer() = default;
             void drawIndexed(const IndexedDrawingSpecifications& ispec);
+            IndexedDrawingSpecifications setup(const ECS::Entity& entity);
+            void draw(const ECS::Entity& obj);
+
             void drawArray(const ArrayDrawingSpecifications& aspec);
             void enableCulling();
             void disableCulling();

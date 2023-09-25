@@ -86,16 +86,16 @@ namespace Lina{	namespace Graphics{
 	int Shader::getUniformLocation(const std::string& name){
 		return glGetUniformLocation(mRenderId, name.c_str());
 	}
-    void Shader::setUniformMat4(const std::string& name, Lina::Matrix4D& program){
+    void Shader::setUniformMat4(const std::string& name, Math::Matrix4D& program){
         glUniformMatrix4fv(getUniformLocation(name), 1, GL_FALSE, &program[0].x);
     }
-    void Shader::setUniformMat3(const std::string& name, Lina::Matrix3D& program){
+    void Shader::setUniformMat3(const std::string& name, Math::Matrix3D& program){
         glUniformMatrix3fv(getUniformLocation(name), 1, GL_FALSE, &program[0].x);
     }
-    void Shader::setUniformVec3(const std::string& name, Lina::Vector3D& program){
+    void Shader::setUniformVec3(const std::string& name, Math::Vector3D& program){
         glUniform3f(getUniformLocation(name), program.x, program.y, program.z);
     }
-    void Shader::setUniformVec4(const std::string& name, Lina::Vector4D& program){
+    void Shader::setUniformVec4(const std::string& name, Math::Vector4D& program){
         glUniform4f(getUniformLocation(name), program.x, program.y, program.z, program.w);
     }
 

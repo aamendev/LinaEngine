@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include <iostream>
-#include "../Math/math.h"
+#include "../main/LinaMath.h"
 namespace Lina{namespace Graphics{
 	struct shaderProgramSource{
 		std::string vertexSource;
@@ -20,11 +20,11 @@ namespace Lina{namespace Graphics{
 
 		void setUniform4f(const std::string& name, float v0, float v1, float v2, float v3);
 		void setUniform1i(const std::string& name, int textUnit);
-        void setUniformVec4(const std::string& name, Lina::Vector4D& program);
-        void setUniformVec3(const std::string& name, Lina::Vector3D& program);
+        void setUniformVec4(const std::string& name, Math::Vector4D& program);
+        void setUniformVec3(const std::string& name, Math::Vector3D& program);
 
-        void setUniformMat4(const std::string& name, Lina::Matrix4D& program);
-        void setUniformMat3(const std::string& name, Lina::Matrix3D& program);
+        void setUniformMat4(const std::string& name, Math::Matrix4D& program);
+        void setUniformMat3(const std::string& name, Math::Matrix3D& program);
 	private:
 		shaderProgramSource parseShader(const std::string& filepath);
 		unsigned int createShader(const std::string& vertexShader, const std::string& fragmentShader);

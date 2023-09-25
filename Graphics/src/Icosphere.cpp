@@ -1,8 +1,8 @@
-#include <iostream>
+#include<iostream>
 #include <map>
 #include "../Icosphere.h"
 #include <cmath>
-namespace Lina{ namespace Graphics { namespace Shapes {
+namespace Lina{ namespace Graphics { namespace Shapes{
     Icosphere::Icosphere(float radius): mRadius(radius){
         const float PI = 3.1415926f;
         const float H_ANGLE = PI / 180 * 72;
@@ -17,8 +17,8 @@ namespace Lina{ namespace Graphics { namespace Shapes {
         mVertices[0].x = 0;
         mVertices[0].y = 0;
         mVertices[0].z = mRadius;
-        mTextureCoordinates[0][0] = 0.5f + atan2f(mVertices[0].normalise().z, mVertices[0].normalise().x) / (2 * PI);
-        mTextureCoordinates[0][1] = acosf(mVertices[0].normalise().y) / PI;
+        mTextureCoordinates[0].u = 0.5f + atan2f(mVertices[0].normalise().z, mVertices[0].normalise().x) / (2 * PI);
+        mTextureCoordinates[0].v = acosf(mVertices[0].normalise().y) / PI;
         for (int i = 1; i < 6; i++){
             i1 = i;
             i2 = (i+5);
@@ -31,10 +31,10 @@ namespace Lina{ namespace Graphics { namespace Shapes {
             mVertices[i2].y = xy * sinf(hAngle2);
             mVertices[i1].z = z;
             mVertices[i2].z = -z;
-            mTextureCoordinates[i1][0] = 0.5f + atan2f(mVertices[i1].normalise().z, mVertices[i1].normalise().x) / (2 * PI);
-            mTextureCoordinates[i2][0] = 0.5f + atan2f(mVertices[i2].normalise().z, mVertices[i2].normalise().x) / (2 * PI);
-            mTextureCoordinates[i1][1] = acosf(mVertices[i1].normalise().y) / PI;
-            mTextureCoordinates[i2][1] = acosf(mVertices[i2].normalise().y) / PI;
+            mTextureCoordinates[i1].u = 0.5f + atan2f(mVertices[i1].normalise().z, mVertices[i1].normalise().x) / (2 * PI);
+            mTextureCoordinates[i2].u = 0.5f + atan2f(mVertices[i2].normalise().z, mVertices[i2].normalise().x) / (2 * PI);
+            mTextureCoordinates[i1].v = acosf(mVertices[i1].normalise().y) / PI;
+            mTextureCoordinates[i2].v = acosf(mVertices[i2].normalise().y) / PI;
             hAngle1 += H_ANGLE;
             hAngle2 += H_ANGLE;
         }
@@ -42,8 +42,8 @@ namespace Lina{ namespace Graphics { namespace Shapes {
         mVertices[i1].x = 0;
         mVertices[i1].y = 0;
         mVertices[i1].z = -mRadius;
-        mTextureCoordinates[i1][0] = 0.5f + atan2f(mVertices[i1].normalise().z, mVertices[i1].normalise().x) / (2 * PI);
-        mTextureCoordinates[i1][1] = acosf(mVertices[i1].normalise().y) / PI;
+        mTextureCoordinates[i1].u = 0.5f + atan2f(mVertices[i1].normalise().z, mVertices[i1].normalise().x) / (2 * PI);
+        mTextureCoordinates[i1].v = acosf(mVertices[i1].normalise().y) / PI;
         mIndices.resize(20 * 3);
         mIndices = {
         0, 1, 2,
@@ -81,14 +81,14 @@ namespace Lina{ namespace Graphics { namespace Shapes {
             int ii1 = windedIndices[i + 1];
             int ii2 = windedIndices[i + 2];
             int ii3 = windedIndices[i + 3];
-            Point3D A = mVertices[ii1];
-            Point3D B = mVertices[ii2];
-            Point3D C = mVertices[ii3];
-            if (mTextureCoordinates[ii1][0] < 0.25f){
+            Math::Point3D A = mVertices[ii1];
+            Math::Point3D B = mVertices[ii2];
+            Math::Point3D C = mVertices[ii3];
+            if (mTextureCoordinates[ii1].u < 0.25f){
             if (duplicated[ii1] == -1)
             {
-                mTextureCoordinates.push_back({mTextureCoordinates[ii1][0] + 1,
-                    mTextureCoordinates[ii1][1]});
+                mTextureCoordinates.push_back({mTextureCoordinates[ii1].u + 1,
+                    mTextureCoordinates[ii1].v});
                 mVertices.emplace_back(mVertices[ii1]);
                 mIndices[ii * 3] = ++vertexIndex;
                 duplicated[ii1] = vertexIndex;
@@ -96,11 +96,11 @@ namespace Lina{ namespace Graphics { namespace Shapes {
                 mIndices[ii * 3] = duplicated[ii1];
             }
             }
-            if (mTextureCoordinates[ii2][0] < 0.25f){
+            if (mTextureCoordinates[ii2].u < 0.25f){
             if (duplicated[ii2] == -1)
             {
-                mTextureCoordinates.push_back({mTextureCoordinates[ii2][0] + 1,
-                    mTextureCoordinates[ii2][1]});
+                mTextureCoordinates.push_back({mTextureCoordinates[ii2].u + 1,
+                    mTextureCoordinates[ii2].v});
                 mVertices.emplace_back(mVertices[ii2]);
                 mIndices[ii * 3 + 1] = ++vertexIndex;
                 duplicated[ii2] = vertexIndex;
@@ -108,11 +108,11 @@ namespace Lina{ namespace Graphics { namespace Shapes {
                 mIndices[ii * 3 + 1] = duplicated[ii2];
             }
             }
-            if (mTextureCoordinates[ii3][0] < 0.25f){
+            if (mTextureCoordinates[ii3].u < 0.25f){
             if (duplicated[ii3] == -1)
             {
-                mTextureCoordinates.push_back({mTextureCoordinates[ii3][0]+ 1,
-                    mTextureCoordinates[ii3][1]});
+                mTextureCoordinates.push_back({mTextureCoordinates[ii3].u+ 1,
+                    mTextureCoordinates[ii3].v});
                 mVertices.emplace_back(mVertices[ii3]);
                 mIndices[ii * 3 + 2] = ++vertexIndex;
                 duplicated[ii3] = vertexIndex;
@@ -130,10 +130,10 @@ namespace Lina{ namespace Graphics { namespace Shapes {
             int ii1 = mIndices[i];
             int ii2 = mIndices[i + 1];
             int ii3 = mIndices[i + 2];
-            Vector3D temp1(mTextureCoordinates[ii1][0], mTextureCoordinates[ii1][1], 0);
-            Vector3D temp2(mTextureCoordinates[ii2][0], mTextureCoordinates[ii2][1], 0);
-            Vector3D temp3(mTextureCoordinates[ii3][0], mTextureCoordinates[ii3][1], 0);
-            Vector3D norm = (temp2 - temp1).cross(temp3 - temp1);
+            Math::Vector3D temp1(mTextureCoordinates[ii1].u, mTextureCoordinates[ii1].v, 0);
+            Math::Vector3D temp2(mTextureCoordinates[ii2].u, mTextureCoordinates[ii2].v, 0);
+            Math::Vector3D temp3(mTextureCoordinates[ii3].u, mTextureCoordinates[ii3].v, 0);
+            Math::Vector3D norm = (temp2 - temp1).cross(temp3 - temp1);
             if (norm.z < 0)
             {
                 windedIndices.emplace_back(i / 3);
@@ -159,8 +159,8 @@ namespace Lina{ namespace Graphics { namespace Shapes {
             yMin = mVertices[iMin].y;
         }
 
-        Point3D sPole = mVertices[iMin];
-        Point3D nPole = mVertices[iMax];
+        Math::Point3D sPole = mVertices[iMin];
+        Math::Point3D nPole = mVertices[iMax];
         int currentIndex = mVertices.size() - 1;
         for (int i = 0; i < mIndices.size(); i +=3)
         {
@@ -169,14 +169,14 @@ namespace Lina{ namespace Graphics { namespace Shapes {
             int ii3 = mIndices[i + 2];
             if (ii1 == iMax || ii2 == iMax || ii3 == iMax)
             {
-                std::array<float, 2>& u1 = mTextureCoordinates[ii1];
-                std::array<float, 2>& u2 = mTextureCoordinates[ii2];
-                std::array<float, 2>& u3 = mTextureCoordinates[ii3];
-                float newU = (ii1 == iMax) * (u2[0] + u3[0]) / 2
-                            + (ii2 == iMax) * (u1[0] + u3[0]) / 2
-                            + (ii3 == iMax) * (u1[0] + u2[0]) / 2;
-                float newV = (ii1 == iMax) * u1[1] + (ii2 == iMax) * u2[1]
-                            + (ii3 == iMax) * u3[1];
+                uv& u1 = mTextureCoordinates[ii1];
+                uv& u2 = mTextureCoordinates[ii2];
+                uv& u3 = mTextureCoordinates[ii3];
+                float newU = (ii1 == iMax) * (u2.u + u3.u) / 2
+                            + (ii2 == iMax) * (u1.u + u3.u) / 2
+                            + (ii3 == iMax) * (u1.u + u2.u) / 2;
+                float newV = (ii1 == iMax) * u1.v + (ii2 == iMax) * u2.v
+                            + (ii3 == iMax) * u3.v;
 
                 mTextureCoordinates.push_back({newU,newV});
                 mVertices.emplace_back(nPole);
@@ -186,14 +186,14 @@ namespace Lina{ namespace Graphics { namespace Shapes {
             }
             else if (ii1 == iMin || ii2 == iMin || ii3 == iMin)
             {
-                std::array<float, 2>& u1 = mTextureCoordinates[ii1];
-                std::array<float, 2>& u2 = mTextureCoordinates[ii2];
-                std::array<float, 2>& u3 = mTextureCoordinates[ii3];
-                float newU = (ii1 == iMin) * (u2[0] + u3[0]) / 2
-                            + (ii2 == iMin) * (u1[0] + u3[0]) / 2
-                            + (ii3 == iMin) * (u1[0] + u2[0]) / 2;
-                float newV = (ii1 == iMin) * u1[1] + (ii2 == iMin) * u2[1]
-                            + (ii3 == iMin) * u3[1];
+                uv& u1 = mTextureCoordinates[ii1];
+                uv& u2 = mTextureCoordinates[ii2];
+                uv& u3 = mTextureCoordinates[ii3];
+                float newU = (ii1 == iMin) * (u2.u + u3.u) / 2
+                            + (ii2 == iMin) * (u1.u + u3.u) / 2
+                            + (ii3 == iMin) * (u1.u + u2.u) / 2;
+                float newV = (ii1 == iMin) * u1.v + (ii2 == iMin) * u2.v
+                            + (ii3 == iMin) * u3.v;
                 mTextureCoordinates.push_back({newU, newV});
                 mVertices.emplace_back(sPole);
                 int removeIndex = i * (ii1 == iMin) + (i + 1) * (ii2 == iMin)
@@ -202,22 +202,16 @@ namespace Lina{ namespace Graphics { namespace Shapes {
             }
         }
     }
-    std::vector<unsigned int> Icosphere::getIndices() const{
-        return mIndices;
-    }
-    std::vector<Point3D> Icosphere::getVertices() const{
-        return mVertices;
-    }
     void Icosphere::subdivide(unsigned int layers){
         if (layers == 0)
             return;
-        std::vector<Point3D> tmpVerts;
+        std::vector<Math::Point3D> tmpVerts;
         std::vector<unsigned int> tmpIndices;
-        std::vector<std::array<float, 2> > tmpTexCoords;
-        std::vector<Point3D> triangleVerts;
-        std::vector<std::array<float,2> > triangleTex;
-        std::vector<Point3D> midPoints;
-        std::vector<std::array<float, 2> > midUV;
+        std::vector<uv> tmpTexCoords;
+        std::vector<Math::Point3D> triangleVerts;
+        std::vector<uv> triangleTex;
+        std::vector<Math::Point3D> midPoints;
+        std::vector<uv> midUV;
         int index;
         subdivide(layers - 1);
         tmpVerts = mVertices;
@@ -286,33 +280,17 @@ namespace Lina{ namespace Graphics { namespace Shapes {
         }
         computeFullVertices();
     }
-    void Icosphere::computeMidPoint(Point3D& v1,
-                             Point3D& v2, Point3D& newV){
+    void Icosphere::computeMidPoint(Math::Point3D& v1,
+                             Math::Point3D& v2, Math::Point3D& newV){
         newV.x = v1.x + v2.x;
         newV.y = v1.y + v2.y;
         newV.z = v1.z + v2.z;
-        newV = (newV.normalise() * mRadius).toPoint();
+        Math::Vector3D vectorNewV = newV.normalise() * mRadius;
+        newV = *(Math::Point3D*)(&vectorNewV.x);
     }
-    void Icosphere::computeMidPointUV(std::array<float, 2>& t0, std::array<float, 2>& t1,
-            std::array<float, 2>& newT){
-       newT[0] = (t0[0] + t1[0]) / 2.0f;
-       newT[1] = (t0[1] + t1[1]) / 2.0f;
-    }
-    void Icosphere::addFullVertex(Point3D& position,
-                std::array<float,2>& texture){
-        mFullVertices.emplace_back(position.x);
-        mFullVertices.emplace_back(position.y);
-        mFullVertices.emplace_back(position.z);
-        mFullVertices.emplace_back(texture[0]);
-        mFullVertices.emplace_back(texture[1]);
-    }
-    void Icosphere::computeFullVertices(){
-        for(int i =0 ; i < mVertices.size(); i++){
-            mFullVertices.emplace_back(mVertices[i].x);
-            mFullVertices.emplace_back(mVertices[i].y);
-            mFullVertices.emplace_back(mVertices[i].z);
-            mFullVertices.emplace_back(mTextureCoordinates[i][0]);
-            mFullVertices.emplace_back(mTextureCoordinates[i][1]);
-        }
+    void Icosphere::computeMidPointUV(uv& t0, uv& t1,
+            uv& newT){
+       newT.u = (t0.u + t1.u) / 2.0f;
+       newT.v = (t0.v + t1.v) / 2.0f;
     }
 }}}

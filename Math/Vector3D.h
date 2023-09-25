@@ -2,7 +2,7 @@
 #include <cmath>
 #include <iostream>
 #include <tuple>
-namespace Lina{
+namespace Lina{ namespace Math{
 	class Matrix3D;
 	class Quatrenion;
 	class Transform4D;
@@ -18,8 +18,8 @@ namespace Lina{
 		 * @brief      constrcts a vector from 3 floats
 		 *
 		 * @param  x     first coordinate
-		 * @param  y      second coordinate 
-		 * @param  z      third coordinate 
+		 * @param  y      second coordinate
+		 * @param  z      third coordinate
 		 */
 		Vector3D(float x, float y, float z);
 
@@ -211,7 +211,7 @@ namespace Lina{
 		  *
 		  * @param  v     const reference to parameter vector
 		  *
-		  * @return     True if the specified v is parallel to current vector, 
+		  * @return     True if the specified v is parallel to current vector,
 		  *                  False otherwise.
 		  */
 		bool isParallel(const Vector3D& v) const;
@@ -236,7 +236,7 @@ namespace Lina{
 		  */
 		bool isPerpendicular(const Vector3D& v) const;
 		 /**
-		  * @brief      checks if the angle between the current Vector 
+		  * @brief      checks if the angle between the current Vector
 		  *             and the parameter vector is acute
 		  *
 		  * @param  v     parameter vector
@@ -245,7 +245,7 @@ namespace Lina{
 		  */
 		bool sameDirection(const Vector3D& v) const;
 		 /**
-		  * @brief      checks if the angle between the current Vector 
+		  * @brief      checks if the angle between the current Vector
 		  *             and the parameter vector is obtuse
 		  *
 		  * @param[in]  v     parameter vector
@@ -316,4 +316,4 @@ namespace Lina{
 	inline Vector3D Vector3D::reject(const Vector3D& v){
 		return (*this - v * (this->dot(v) / v.dot(v)));
 	}
-}
+}}

@@ -1,9 +1,9 @@
-#include "../Vector4D.hpp"
-#include "../Matrix4D.hpp"
+#include "../Vector4D.h"
+#include "../Matrix4D.h"
 #include "../Utilities.h"
 #include <cmath>
 #include <iostream>
-namespace Lina{
+namespace Lina{ namespace Math{
 	Vector4D::Vector4D(float x, float y, float z, float w): x(x), y(y), z(z),w(w) {}
 
 	Vector4D& Vector4D::operator *=(float s){
@@ -57,4 +57,4 @@ namespace Lina{
 // Vector4D Vector4D::Skew(float theta, const Vector4D& vector0, const Vector4D& vector1){
 // 	return *this * MathUtil::skewMatrix(theta, vector0, vector1);
 // }
-}
+}}

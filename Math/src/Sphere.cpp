@@ -1,5 +1,5 @@
-#include "../Sphere.hpp"
-namespace Lina{
+#include "../Sphere.h"
+namespace Lina{ namespace Math{
 	Sphere::Sphere(const Point3D& c, float r): centre(c), radius(r) {}
 	void Sphere::setCentre(const Point3D& c){
 		centre = c;
@@ -19,4 +19,4 @@ namespace Lina{
 			return false;
 		return (centre - r.base).reject(r.direction).magnitude() <= radius;
 	}
-}
+}}

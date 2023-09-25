@@ -1,12 +1,12 @@
-#include "../Vector3D.hpp"
-#include "../Quatrenion.hpp"
-#include "../Matrix.hpp"
+#include "../Vector3D.h"
+#include "../Quatrenion.h"
+#include "../Matrix3D.h"
 #include "../Utilities.h"
-#include "../Transform4D.hpp"
+#include "../Transform4D.h"
 #include <cmath>
 #include <tuple>
 #include <iostream>
-namespace Lina{
+namespace Lina{ namespace Math{
 	Vector3D::Vector3D(float x, float y, float z): x(x), y(y), z(z) {}
 
 	Vector3D& Vector3D::operator *=(float s){
@@ -41,19 +41,19 @@ namespace Lina{
 		return Vector3D(this->dot(m[0]), this->dot(m[1]), this->dot(m[2]));
 	}
 	Vector3D Vector3D::rotate(float theta, const Vector3D& axis){
-		return *this * MathUtil::rotationMatrix(theta, axis);
+		return *this * Util::rotationMatrix(theta, axis);
 	}
 	Vector3D Vector3D::reflect(const Vector3D& axis){
-		return *this * MathUtil::reflectionMatrix(axis);
+		return *this * Util::reflectionMatrix(axis);
 	}
 	Vector3D Vector3D::involute(const Vector3D& axis){
-		return *this * MathUtil::involutionMatrix(axis);
+		return *this * Util::involutionMatrix(axis);
 	}
 	Vector3D Vector3D::scale(float s, const Vector3D& axis){
-		return *this * MathUtil::scaleMatrix(s, axis);
+		return *this * Util::scaleMatrix(s, axis);
 	}
 	Vector3D Vector3D::skew(float theta, const Vector3D& vector0, const Vector3D& vector1){
-		return *this * MathUtil::skewMatrix(theta, vector0, vector1);
+		return *this * Util::skewMatrix(theta, vector0, vector1);
 	}
 	Vector3D Vector3D::rotateQuatrenion(const Quatrenion& quat){
 		const Quatrenion q = quat.normalise();
@@ -72,7 +72,7 @@ namespace Lina{
 	const Point3D Vector3D::toPoint() const{
 		return Point3D(x, y, z);
 	}
-	std::tuple<Vector3D, Vector3D, Vector3D> 
+	std::tuple<Vector3D, Vector3D, Vector3D>
 	Vector3D::constructOrthonormal(const Vector3D& v1){
 		Vector3D v = this->normalise();
 		if (v.cross(v1).magnitude() == 0) throw std::invalid_argument
@@ -101,4 +101,4 @@ namespace Lina{
 
 
 
-}
+}}

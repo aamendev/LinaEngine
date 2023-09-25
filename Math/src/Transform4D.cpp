@@ -1,5 +1,5 @@
-#include "../Transform4D.hpp"
-namespace Lina{
+#include "../Transform4D.h"
+namespace Lina{ namespace Math{
 	Transform4D::Transform4D(float n00, float n01, float n02, float n03,
 		float n10, float n11, float n12, float n13,
 		float n20, float n21, float n22, float n23){
@@ -13,7 +13,7 @@ namespace Lina{
 		n[0][0] = v0.x; n[0][1] = v0.y; n[0][2] = v0.z; n[0][3] = 0;
 		n[1][0] = v1.x; n[1][1] = v1.y; n[1][2] = v1.z; n[1][3] = 0;
 		n[2][0] = v2.x; n[2][1] = v2.y; n[2][2] = v2.z; n[2][3] = 0;
-		n[2][0] = p.x; n[2][1] = p.y; n[2][2] = p.z; n[3][3] = 1;
+		n[3][0] = p.x; n[3][1] = p.y; n[3][2] = p.z; n[3][3] = 1;
 	}
 	Vector3D& Transform4D::operator[](int j){
 		return *reinterpret_cast<Vector3D *> (&n[j]);
@@ -24,6 +24,12 @@ namespace Lina{
 	const Point3D& Transform4D::getTranslation() const{
 		return	*reinterpret_cast<const Point3D *>(&n[3]);
 	}
+    Matrix3D Transform4D::getRotationMatrix() const
+    {
+        Transform4D ThisMat = *this;
+        Matrix3D rotationMatrix(ThisMat[0], ThisMat[1], ThisMat[2]);
+        return rotationMatrix;
+    }
 	void Transform4D::setTranslation(const Point3D& p){
 		n[3][0] = p.x;
 		n[3][1] = p.y;
@@ -80,4 +86,4 @@ namespace Lina{
 			H(2, 0) * p.x + H(2, 1) * p.y + H(2, 2) * p.z + H(2,3)
 			);
 	}
-}
+}}

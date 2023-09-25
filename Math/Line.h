@@ -1,7 +1,7 @@
 #pragma once
-#include "Vector3D.hpp"
-#include "Point3D.hpp"
-namespace Lina{
+#include "Vector3D.h"
+#include "Point3D.h"
+namespace Lina{ namespace Math{
 	class Line{
 		public:
 			/**
@@ -54,7 +54,7 @@ namespace Lina{
 			Line(const Point3D& p);
 			/**
 			 * @brief      find the minimum distance between the current line and a
-			 *             reference line. 
+			 *             reference line.
 			 *
 			 * @param  l     reference line
 			 *
@@ -71,4 +71,4 @@ namespace Lina{
 			 */
 			float distance(const Point3D& p);
 	};
-}
+}}

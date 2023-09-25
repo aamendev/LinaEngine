@@ -1,13 +1,7 @@
 #include "../Utilities.h"
-#include "../Matrix.hpp"
-#include "../Vector3D.hpp"
-#include "../Point3D.hpp"
-#include "../Transform4D.hpp"
-#include "../Quatrenion.hpp"
 #include <cmath>
 #include <cfloat>
-namespace Lina{
-	namespace MathUtil{
+namespace Lina{	namespace Math{ namespace  Util {
 		Matrix3D rotationMatrix(float theta,const Vector3D& axis){
 			float c = cos(theta);
 			float s = sin(theta);
@@ -23,7 +17,7 @@ namespace Lina{
 			Vector3D a = axis.normalise();
 			return Matrix3D(1 - 2 * a.x * a.x, -2 * a.x * a.y, -2 * a.x * a.z,
 				-2 * a.x * a.y, 1 - 2 * a.y * a.y, -2 * a.y * a.z,
-				-2 * a.x * a.z, -2 * a.y * a.z, 1 - 2 * a.z * a.z		
+				-2 * a.x * a.z, -2 * a.y * a.z, 1 - 2 * a.z * a.z
 				);
 		}
 		Matrix3D identityMatrix(){
@@ -46,7 +40,7 @@ namespace Lina{
 			return Matrix3D(
 				s * a.x * a.x + 1, s * a.x * a.y, s * a.x * a.z,
 				s * a.x * a.y, s * a.y * a.y + 1, s * a.y * a.z,
-				s * a.x * a.z, s * a.y * a.z, s * a.z * a.z + 1 
+				s * a.x * a.z, s * a.y * a.z, s * a.z * a.z + 1
 				);
 		}
 		Matrix3D skewMatrix(float theta, const Vector3D& vector0, const Vector3D& vector1){
@@ -164,5 +158,4 @@ namespace Lina{
 		std::pair<Quatrenion, Quatrenion> dualQuatrenion(const Quatrenion& q0, const Quatrenion& q1){
 			return {q0, q1};
 		}
-	}
-}
+}}}

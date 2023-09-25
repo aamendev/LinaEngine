@@ -1,6 +1,6 @@
 #pragma once
-#include "Vector3D.hpp"
-namespace Lina{
+#include "Vector3D.h"
+namespace Lina{ namespace Math{
 	class Point3D : public Vector3D{
 	public:
 		Point3D() = default;
@@ -20,4 +20,4 @@ namespace Lina{
 	Point3D operator-(const Point3D& a, const Vector3D& b){
 		return Point3D(a.x - b.x, a.y - b.y, a.z - b.z);
 	}
-}
+}}

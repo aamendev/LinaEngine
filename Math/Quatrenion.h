@@ -1,8 +1,12 @@
 #pragma once
-#include "Vector3D.hpp"
-#include "Matrix.hpp"
+#include "Vector3D.h"
+#include "Matrix3D.h"
 #include <iostream>
-namespace Lina{
+namespace Lina{ namespace Math{
+    struct EulerAngles
+    {
+        float x, y, z;
+    };
 	class Quatrenion{
 	public:
 		float x, y, z, w;
@@ -26,6 +30,8 @@ namespace Lina{
 		friend std::ostream& operator<<(std::ostream& os, const Quatrenion& q);
 		float theta(const Quatrenion& q) const;
 		float dot(const Quatrenion& q) const;
+        EulerAngles toAngles() const;
+        friend Quatrenion angleToQuat(EulerAngles euler);
 	};
 	inline Quatrenion operator*(const Quatrenion& q0, float s){
 		return Quatrenion(q0.x * s, q0.y * s, q0.z * s, q0.w * s);
@@ -36,4 +42,4 @@ namespace Lina{
 	inline Quatrenion operator+(const Quatrenion& q0, const Quatrenion& q1){
 		return Quatrenion(q0.getVector() + q1.getVector(), q0.w + q1.w);
 	}
-}
+}}

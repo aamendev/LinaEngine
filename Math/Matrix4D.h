@@ -1,8 +1,8 @@
 #pragma once
 #include <array>
-#include "Vector4D.hpp"
+#include "Vector4D.h"
 #include <iostream>
-namespace Lina{
+namespace Lina{ namespace Math{
 	class Matrix4D{
 	protected:
 		std::array<std::array<float, 4>, 4 > n;
@@ -25,4 +25,4 @@ namespace Lina{
 		const float atPos(int i, int j) const;
 		// const Matrix3D Inverse() const;
 	};
-}
+}}

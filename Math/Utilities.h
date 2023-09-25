@@ -1,15 +1,14 @@
 #pragma once
-#include "Matrix.hpp"
-#include "Vector3D.hpp"
-#include "Point3D.hpp"
-#include "Plane.hpp"
-#include "Transform4D.hpp"
-#include "Line.hpp"
-#include "Quatrenion.hpp"
+#include "Matrix3D.h"
+#include "Vector3D.h"
+#include "Point3D.h"
+#include "Plane.h"
+#include "Transform4D.h"
+#include "Line.h"
+#include "Quatrenion.h"
 #include <utility>
-#include <iostream>	
-namespace Lina{
-	namespace MathUtil{
+#include <iostream>
+namespace Lina{ namespace Math{ namespace Util{
 
 	/**
 	 * @brief      creates a rotation Matrix to rotate theta radians around axis
@@ -52,7 +51,7 @@ namespace Lina{
 	 * @return     A 3D Matrix representing the Scaling
 	 */
 		Matrix3D scaleMatrix(float s, const Vector3D& axis);
-		Matrix3D skewMatrix(float theta, const Vector3D& v0, 
+		Matrix3D skewMatrix(float theta, const Vector3D& v0,
 			const Vector3D& v1);
 		Transform4D zUp();
 		Transform4D yUp();
@@ -105,10 +104,9 @@ namespace Lina{
 		Quatrenion lerp(const Quatrenion& q1, const Quatrenion& q2, float beta);
 		Quatrenion slerp(const Quatrenion& q1, const Quatrenion& q2, float beta);
 
-		std::pair<Quatrenion, Quatrenion> dualQuatrenion(const Quatrenion& q0, const Quatrenion& q1); 
+		std::pair<Quatrenion, Quatrenion> dualQuatrenion(const Quatrenion& q0, const Quatrenion& q1);
 
 		float distance(const Point3D& q, const Point3D& p, const Vector3D& v);
 		float distance(const Point3D& p0, const Vector3D& v0,
 			const Point3D& p1, const Vector3D& v1);
-	}
-}
+}}}

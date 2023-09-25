@@ -1,7 +1,7 @@
 #pragma once
-#include "Vector3D.hpp"
-#include "Point3D.hpp"
-namespace Lina{
+#include "Vector3D.h"
+#include "Point3D.h"
+namespace Lina{namespace Math{
 	class Segment{
 		public:
 			Point3D p0;
@@ -15,4 +15,4 @@ namespace Lina{
 			float squaredLength() const;
 			Vector3D direction() const;
 	};
-}
+}}

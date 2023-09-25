@@ -1,9 +1,9 @@
-#include "../Matrix.hpp"
+#include "../Matrix3D.h"
 #include <iostream>
 #include <iomanip>
 #include <ios>
 #include <cmath>
-namespace Lina{
+namespace Lina{ namespace Math{
 	Matrix3D::Matrix3D(float n00, float n01, float n02,
 		float n10, float n11, float n12,
 		float n20, float n21, float n22){
@@ -93,4 +93,4 @@ namespace Lina{
 	const Matrix3D Matrix3D::adjugate() const{
 		return this->inverse() * this->determinant();
 	}
-}
+}}

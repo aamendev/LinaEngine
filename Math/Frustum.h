@@ -1,6 +1,6 @@
 #pragma once
 #include <array>
-#include "Plane.hpp"
+#include "Plane.h"
 namespace Lina{ namespace Math{
 
     class Frustum{

@@ -1,8 +1,8 @@
 #pragma once
 #include <array>
-#include "Vector3D.hpp"
+#include "Vector3D.h"
 #include <iostream>
-namespace Lina{
+namespace Lina{ namespace Math{
 	class Matrix3D{
 	private:
 		std::array<std::array<float, 3>, 3 > n;
@@ -27,4 +27,4 @@ namespace Lina{
 		const Matrix3D inverse() const;
 		const Matrix3D adjugate() const;
 	};
-}
+}}
