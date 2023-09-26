@@ -6,8 +6,3 @@ quickTest/
 latex/
 html/
 Docs/
-*.out
-*.in
-*.sh
-main
-
