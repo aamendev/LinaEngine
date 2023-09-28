@@ -10,4 +10,11 @@ Docs/
 *.in
 main*
 *.sh
+doxy*
+Doxy*
+html
+latex
+*.css
+*.html
+img
 

@@ -7,7 +7,7 @@ namespace Lina{ namespace Memory{
         u64 maxEntries = totalSize / (sizeof(void*) * sizeof(Node));
         return sizeof(ListSpecs) + (sizeof(Node) * maxEntries);
     }
-    b8 FreeList::Init(u64 totalSize, void* block)
+    b8 FreeList::Init(u64 totalSize)
     {
         u64 maxEntries = totalSize / (sizeof(void*) * sizeof(Node));
         u64 memoryRequirement = FreeList::getMemoryRequirement(totalSize);
@@ -18,9 +18,9 @@ namespace Lina{ namespace Memory{
             std::cout<<"Minimum: " << minimumSize << ", Allocated: " << totalSize;
             return false;
         }
-        mMemory = block;
+        mMemory = Manager::Memory::lalloc(memoryRequirement);
         Manager::Memory::lzero(mMemory, memoryRequirement);
-        ListSpecs* specs = (ListSpecs*)mMemory;
+        ListSpecs* specs = reinterpret_cast<ListSpecs*>(mMemory);
         specs->sNodes = reinterpret_cast<Node*>((u8*)mMemory + sizeof(ListSpecs));
         specs->sMaxEntries = maxEntries;
         specs->sTotalSize = totalSize;
@@ -41,7 +41,7 @@ namespace Lina{ namespace Memory{
     {
         if (mMemory)
         {
-            ListSpecs* specs = (ListSpecs*)mMemory;
+            ListSpecs* specs = reinterpret_cast<ListSpecs*>(mMemory);
             Manager::Memory::lfree(mMemory, FreeList::getMemoryRequirement(specs->sTotalSize));
             return true;
         }
@@ -57,7 +57,7 @@ namespace Lina{ namespace Memory{
     {
         if (!mMemory)
             return false;
-        ListSpecs* specs = (ListSpecs*)mMemory;
+        ListSpecs* specs = reinterpret_cast<ListSpecs*>(mMemory);
         u64 nodeOffset = 0;
         Node* node = specs->sHead;
         Node* prev = 0;
@@ -99,7 +99,7 @@ namespace Lina{ namespace Memory{
     {
         if (!size || !mMemory)
             return false;
-        ListSpecs* specs = (ListSpecs*)mMemory;
+        ListSpecs* specs = reinterpret_cast<ListSpecs*>(mMemory);
         Node* node = specs->sHead;
         Node* prev = 0;
         if (!node)
@@ -173,7 +173,7 @@ namespace Lina{ namespace Memory{
     {
         if (!mMemory)
             return;
-        ListSpecs* specs = (ListSpecs*)mMemory;
+        ListSpecs* specs = reinterpret_cast<ListSpecs*>(mMemory);
 
         for (u64 i = 1; i < specs->sMaxEntries; i++)
         {
@@ -185,7 +185,7 @@ namespace Lina{ namespace Memory{
     }
     Node* FreeList::getNode()
     {
-        ListSpecs* specs = (ListSpecs*)mMemory;
+        ListSpecs* specs = reinterpret_cast<ListSpecs*>(mMemory);
         for (u64 i = 1; i < specs->sMaxEntries; i++)
         {
             if (specs->sNodes[i].offset == INVALID)
@@ -198,7 +198,7 @@ namespace Lina{ namespace Memory{
         if (!mMemory)
             return 0;
         u64 current = 0;
-        ListSpecs* specs = (ListSpecs*)mMemory;
+        ListSpecs* specs = reinterpret_cast<ListSpecs*>(mMemory);
         Node* node = specs->sHead;
         while (node)
         {
