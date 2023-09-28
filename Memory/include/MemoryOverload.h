@@ -4,6 +4,7 @@
 
 void* operator new(u64 size)
 {
+    std::cout<<"Allocated!\n";
     return Lina::Manager::Memory::lalloc(size);
 }
 void operator delete(void* block, u64 size)

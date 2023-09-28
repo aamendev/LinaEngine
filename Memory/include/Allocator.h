@@ -52,6 +52,8 @@ namespace Lina { namespace Memory{
             b8 freeBlock();
             b8 clear();
             u64 getMemoryRequirement(u64 size);
+            b8 free(void* block);
+            b8 freeWithAlignment(void* block);
             /**
              * @brief gets the total remaining free space from the allocator.
              * @return the amount of free space.

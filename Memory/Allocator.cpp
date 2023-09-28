@@ -24,6 +24,7 @@ namespace Lina{ namespace Memory{
         AllocatorSpecs* specs = reinterpret_cast<AllocatorSpecs*>(mMemory);
         specs->sFreeList.Destroy();
         Manager::Memory::lzero(specs->sMemoryBlock, specs->sTotalSize);
+        Manager::Memory::lfree(mMemory, Allocator::getMemoryRequirement(specs->sTotalSize));
         specs->sTotalSize = 0;
         mMemory = 0;
         return true;
@@ -43,11 +44,6 @@ namespace Lina{ namespace Memory{
             if (requiredSize > 4294967295U)
                 return nullptr;
             u64 initialOffset = specs->sFreeList.allocateBlock(requiredSize);
-            if (initialOffset < 1)
-            {
-                std::cout<<"Failed to allocate, Only " << specs->sFreeList.getFreeSpace() << " is available!\n";
-                return nullptr;
-            }
             void* ptr =  reinterpret_cast<void*>((u64)specs->sMemoryBlock + initialOffset);
             initialOffset = Allocator::alignAddress((u64)ptr + sizeof(u32), alignment);
             u32* blockSize = reinterpret_cast<u32*>(initialOffset - sizeof(u32));
@@ -59,6 +55,34 @@ namespace Lina{ namespace Memory{
         }
         std::cout<< "invalid size or alignment\n";
         return nullptr;
+    }
+    b8 Allocator::free(void* block)
+    {
+       return freeWithAlignment(block);
+    }
+    b8 Allocator::freeWithAlignment(void* block)
+    {
+        if (!block)
+        {
+            std::cout<<"Invalid Free!\n";
+            return false;
+        }
+        AllocatorSpecs* specs = reinterpret_cast<AllocatorSpecs*>(mMemory);
+        if (block < specs->sMemoryBlock || block > (u8*)specs->sMemoryBlock + specs->sTotalSize)
+        {
+            std::cout<<"Out of Range\n";
+            return false;
+        }
+        u32* blockSize = (u32*)((u64)block - sizeof(u32));
+        AllocatorHeader* header =reinterpret_cast<AllocatorHeader*>((u64)block + *blockSize);
+        u64 requiredSize = header->alignment + sizeof(AllocatorHeader) + sizeof(u32) + *blockSize;
+        u64 offset = (u64)header->start - (u64)specs->sMemoryBlock;
+        if (!specs->sFreeList.freeBlock(requiredSize, offset))
+        {
+            std::cout<<"Failed to Free the given block\n";
+            return false;
+        }
+        return true;
     }
     u64 Allocator::getFreeSpace()
     {
