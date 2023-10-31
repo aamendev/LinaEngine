@@ -1,25 +1,56 @@
 #pragma once
-#include "./Memory.h"
+#include <iostream>
 #include <memory>
-
-void* operator new(u64 size)
+#include "./Memory.h"
+extern Lina::Manager::Memory gMemoryManager;
+/*inline void* operator new(u64 size)
 {
-    std::cout<<"Allocated!\n";
-    return Lina::Manager::Memory::lalloc(size);
+     return gMemoryManager.lalloc(size);
 }
-void operator delete(void* block, u64 size)
+inline void* operator new[](u64 size)
 {
-    Lina::Manager::Memory::lfree(block, size);
+    return gMemoryManager.lalloc(size);
 }
-void operator delete[](void* block, u64 size)
+inline void operator delete(void* block, u64 size)
 {
-    Lina::Manager::Memory::lfree(block, size);
+    gMemoryManager.lfree(block, size);
 }
-void operator delete[](void* block)
+inline void operator delete[](void* block, u64 size)
 {
-    Lina::Manager::Memory::lfree(block, 0);
+    std::cout<<gMemoryManager.lfree(block, size);
 }
-void operator delete(void* block)
+inline void operator delete[](void* block)
 {
-    Lina::Manager::Memory::lfree(block, 0);
+    u64 size = gMemoryManager.getSize(block);
+    gMemoryManager.lfree(block, size);
+}
+inline void operator delete(void* block)
+{
+    u64 size = gMemoryManager.getSize(block);
+    gMemoryManager.lfree(block, size);
+}*/
+template <typename T>
+inline T* lnew ()
+{
+    return reinterpret_cast<T*>(gMemoryManager.lalloc((u64)sizeof(T)));
+}
+template <class T>
+inline T* lnew (T&& t)
+{
+    T* newT = new (gMemoryManager.lalloc((u64)sizeof(T))) T(t);
+    std::cout<<"Copied::::"<<typeid(T).name()<<"\n";
+    return newT;
+}
+template <class T>
+inline T* lnew (const T& t)
+{
+    T* newT = new (gMemoryManager.lalloc((u64)sizeof(T))) T(t);
+    std::cout<<"Copied2::::"<<typeid(T).name()<<"\n";
+    return newT;
+}
+template <typename T>
+inline void ldelete (T* block)
+{
+    block->~T();
+    gMemoryManager.lfree(block, gMemoryManager.getSize(block));
 }

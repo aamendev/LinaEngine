@@ -2,8 +2,10 @@
 #include "../../main/LinaGraphics.h"
 #include "../../Events/Events.h"
 #include "../headers/Root.h"
+#include "../../Memory/include/MemoryOverload.h"
 #include "Macros.h"
-//#include "../headers/Layer.h"
+#include "../../Layers/include/GUI.h"
+#include "../headers/Layer.h"
 namespace Lina { namespace Core{
     struct ApplicationSpecifications
     {
@@ -14,7 +16,7 @@ namespace Lina { namespace Core{
     {
         public:
             Application();
-            Application(Graphics::Window& window, Root& root);
+            Application(Graphics::Window* window, Root& root);
             virtual ~Application() = default;
 
             void onEvent(Events::Event& e);
@@ -26,6 +28,7 @@ namespace Lina { namespace Core{
             const ApplicationSpecifications getSpecifications() const { return mSpecs; }
             void run();
             Graphics::Window* mWindow;
+            static Application& Get() {return *gApplication;}
         private:
             bool onWindowClose(Events::WindowClose& e);
             bool onWindowResize(Events::WindowResize& e);
@@ -38,6 +41,8 @@ namespace Lina { namespace Core{
             float mLastFrameTime = 0.0f;
         private:
             Root* mRoot;
+            static Application* gApplication;
+            Lina::Layer::GUI* mGUILayer;
             //friend int ::main();
     };
     Application* CreateApplication();

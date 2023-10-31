@@ -5,8 +5,18 @@
 namespace Lina{ namespace Graphics{
    class Texture{
        public:
+        Texture() {}
         Texture(const std::string& path, bool flip = false);
+        Texture(Texture&& tex)
+        {
+            Texture(std::move(tex.mPath), true);
+        }
+        Texture(const Texture& tex)
+        {
+            Texture(tex.mPath, true);
+        }
         ~Texture();
+        void setTextureFromPath(const std::string& path, bool flip = false);
         unsigned int getWidth() const { return mWidth;}
         unsigned int getHeight() const {return mHeight;}
         unsigned int getRenderId() const {return mRenderId;}

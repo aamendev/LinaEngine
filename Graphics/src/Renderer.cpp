@@ -1,3 +1,4 @@
+#include "../../Memory/include/MemoryOverload.h"
 #include "../Renderer.h"
 #include "../../ECS/include/ECSManager.h"
 #include "../../ECS/include/component.h"
@@ -23,31 +24,48 @@ namespace Lina{ namespace Manager{
     void Renderer::drawIndexed(const IndexedDrawingSpecifications& ispec){
 	    glDrawElements(ispec.primitive, ispec.size, ispec.dataType, ispec.dataPointer);
     }
-    IndexedDrawingSpecifications Renderer::setup(const ECS::Entity& entity)
+    std::pair<IndexedDrawingSpecifications, DrawData> Renderer::setup(const ECS::Entity& entity)
     {
+        enableBlending(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         ECS::Component::Type renderType = ECS::Component::Type::Render;
         ECS::Component::Render* render = dynamic_cast<ECS::Component::Render*>(entity.findComponent(renderType));
-        Graphics::VertexArray va;
-        Graphics::Texture tex = render->getTexture();
-        Graphics::Renderable obj = render->getRenderable();
+        Graphics::VertexArray* va = lnew<Graphics::VertexArray>();
+        Graphics::Texture* tex = render->getTexture();
+        Graphics::Renderable* obj = render->getRenderable();
         Graphics::VertexBufferLayout layout;
-        std::vector<float> vertices = obj.getFullVertices();
-        std::vector<unsigned int> indices = obj.getIndices();
-        Lina::Graphics::VertexBuffer vb(&vertices[0], vertices.size() * sizeof(vertices[0]));
-        Lina::Graphics::IndexBuffer ib(&indices[0], indices.size() * sizeof(indices[0]));
-        Lina::Graphics::Shader shader = render->getShader();
+        std::vector<float> vertices = obj->getFullVertices();
+        std::vector<unsigned int> indices = obj->getIndices();
+        Lina::Graphics::VertexBuffer* vb = lnew<Lina::Graphics::VertexBuffer>();
+        vb->constructFromDataPointer(&vertices[0], vertices.size() * sizeof(vertices[0]));
+        Lina::Graphics::IndexBuffer* ib = lnew<Lina::Graphics::IndexBuffer>();
+        ib->constructFromDataPointer(&indices[0], indices.size() * sizeof(indices[0]));
+        Lina::Graphics::Shader* shader = render->getShader();
         layout.push<float>(3);
         layout.push<float>(2);
-        shader.bind();
-        vb.bind();
-        va.addBuffer(vb, layout);
-        va.bind();
-        ib.bind();
-        tex.bind();
-        //Lina::Graphics::clearGL();
+        va->addBuffer(*vb, layout);
         enableCulling();
         setFrontFace(GL_CCW);
-        return {GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, nullptr};
+        IndexedDrawingSpecifications ispec =
+        {
+            GL_TRIANGLES, indices.size(),
+            GL_UNSIGNED_INT, nullptr
+        };
+        DrawData data = {tex, va, vb, ib, shader};
+        return {ispec, data};
+    }
+    void Renderer::bind(const DrawData& d)
+    {
+        d.va->bind();
+        d.tex->bind();
+        d.vb->bind();
+        d.ib->bind();
+        d.shader->bind();
+    }
+    void Renderer::freeDrawData(DrawData& data)
+    {
+        ldelete(data.va);
+        ldelete(data.vb);
+        ldelete(data.ib);
     }
     void Renderer::drawArray(const ArrayDrawingSpecifications& aspec){
 	    glDrawArrays(aspec.primitive, aspec.first, aspec.count);

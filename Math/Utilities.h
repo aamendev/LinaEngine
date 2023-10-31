@@ -97,7 +97,7 @@ namespace Lina{ namespace Math{ namespace Util{
 	 */
 		Transform4D scaleMatrix(const Vector3D& scale);
 		Transform4D transMatrix(const Matrix3D& transform,const Vector3D& translate);
-
+        Matrix4D projMatrix(float fov, float ar);
 
 		Line connectOrigin(const Point3D& p);
 

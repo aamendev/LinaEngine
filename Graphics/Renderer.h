@@ -10,6 +10,14 @@ namespace Lina{ namespace Manager{
         GLenum dataType;
         const void *dataPointer;
     };
+    struct DrawData
+    {
+        Graphics::Texture* tex;
+        Graphics::VertexArray* va;
+        Graphics::VertexBuffer* vb;
+        Graphics::IndexBuffer* ib;
+        Graphics::Shader* shader;
+    };
     struct ArrayDrawingSpecifications
     {
 	    GLenum primitive;
@@ -21,9 +29,12 @@ namespace Lina{ namespace Manager{
         public:
             Renderer() = default;
             void drawIndexed(const IndexedDrawingSpecifications& ispec);
-            IndexedDrawingSpecifications setup(const ECS::Entity& entity);
+            std::pair<IndexedDrawingSpecifications, DrawData> setup(const ECS::Entity& entity);
             void draw(const ECS::Entity& obj);
 
+            void bind(const DrawData&);
+            void loadGL() {gladLoadGL();}
+            void freeDrawData(DrawData& data);
             void drawArray(const ArrayDrawingSpecifications& aspec);
             void enableCulling();
             void disableCulling();

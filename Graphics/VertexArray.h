@@ -8,6 +8,7 @@ namespace Lina{namespace Graphics{
 	public:
 		VertexArray();
 		~VertexArray();
+        unsigned int getId() {return mRenderId;}
 		void addBuffer(const VertexBuffer& vb, const VertexBufferLayout& layout);
 		void addAccurateBuffer(const VertexBuffer& vb, const VertexBufferLayout& layout);
 		void bind() const;

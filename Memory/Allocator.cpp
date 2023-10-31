@@ -1,30 +1,30 @@
 #include "include/Allocator.h"
-
-namespace Lina{ namespace Memory{
+#include "include/Memory.h"
+extern Lina::Manager::Memory gMemoryManager;
+namespace Lina{ namespace Allocation{
     u64 Allocator::getMemoryRequirement(u64 size)
     {
         u64 freeListRequirement = FreeList::getMemoryRequirement(size);
         return freeListRequirement + sizeof(AllocatorSpecs) + size;
     }
-    b8 Allocator::Init(u64 size)
+    b8 Allocator::Init(u64 size, void* block)
     {
         if (size < 1)
             return false;
-        mMemory = Manager::Memory::lalloc(Allocator::getMemoryRequirement(size));
+        mMemory = block;
         AllocatorSpecs* specs = reinterpret_cast<AllocatorSpecs*>(mMemory);
         specs->sTotalSize = size;
         specs->sFreeListBlock = (void*)((u8*)mMemory + sizeof(AllocatorSpecs));
         specs->sMemoryBlock = (void*)((u8*)specs->sFreeListBlock + FreeList::getMemoryRequirement(size));
-        specs->sFreeList.Init(size);
-        Manager::Memory::lzero(specs->sMemoryBlock, size);
+        specs->sFreeList.Init(size, specs->sFreeListBlock);
+        gMemoryManager.lzero(specs->sMemoryBlock, size);
         return true;
     }
     b8 Allocator::Destroy()
     {
         AllocatorSpecs* specs = reinterpret_cast<AllocatorSpecs*>(mMemory);
         specs->sFreeList.Destroy();
-        Manager::Memory::lzero(specs->sMemoryBlock, specs->sTotalSize);
-        Manager::Memory::lfree(mMemory, Allocator::getMemoryRequirement(specs->sTotalSize));
+        gMemoryManager.lzero(specs->sMemoryBlock, specs->sTotalSize);
         specs->sTotalSize = 0;
         mMemory = 0;
         return true;
@@ -54,7 +54,7 @@ namespace Lina{ namespace Memory{
             return reinterpret_cast<void*>(initialOffset);
         }
         std::cout<< "invalid size or alignment\n";
-        return nullptr;
+        return 0;
     }
     b8 Allocator::free(void* block)
     {
@@ -70,7 +70,10 @@ namespace Lina{ namespace Memory{
         AllocatorSpecs* specs = reinterpret_cast<AllocatorSpecs*>(mMemory);
         if (block < specs->sMemoryBlock || block > (u8*)specs->sMemoryBlock + specs->sTotalSize)
         {
-            std::cout<<"Out of Range\n";
+            void* endBlock = (u8*)specs->sMemoryBlock + specs->sTotalSize;
+            std::cout<<"Out of Range, Block position: "
+                << block << " ,Allocator Range: [" << specs->sMemoryBlock<<", "
+                << endBlock<< "]\n\n";
             return false;
         }
         u32* blockSize = (u32*)((u64)block - sizeof(u32));
@@ -83,6 +86,21 @@ namespace Lina{ namespace Memory{
             return false;
         }
         return true;
+    }
+    std::pair<u64, u16> Allocator::getSizeAndAlignment(void* block)
+    {
+        u64 size = *(u32*)((u64)block - sizeof(u32));
+        AllocatorHeader* header = reinterpret_cast<AllocatorHeader*>((u64)block + size);
+        u16 alignment = header->alignment;
+        return {size, alignment};
+    }
+    u64 Allocator::getSize(void* block)
+    {
+        return getSizeAndAlignment(block).first;
+    }
+    u16 Allocator::getAlignment(void* block)
+    {
+        return getSizeAndAlignment(block).second;
     }
     u64 Allocator::getFreeSpace()
     {

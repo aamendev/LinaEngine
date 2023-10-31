@@ -5,13 +5,10 @@ namespace Lina { namespace Manager{
    class Input
    {
        public:
-            Input(Graphics::Window& window);
-            bool isKeyPressed(const KeyCode key);
-            bool isMouseButtonPressed(const MouseCode mouse);
-            std::pair<float, float> getMousePosition();
-            float getMouseX() {return getMousePosition().first;}
-            float getMouseY() {return getMousePosition().second;}
-        private:
-            GLFWwindow* mWindow;
+            static bool isKeyPressed(const KeyCode key);
+            static bool isMouseButtonPressed(const MouseCode mouse);
+            static std::pair<float, float> getMousePosition();
+            static float getMouseX() {return getMousePosition().first;}
+            static float getMouseY() {return getMousePosition().second;}
    };
 }}

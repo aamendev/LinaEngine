@@ -1,14 +1,21 @@
 #include "../Texture.h"
 #include "../stb_image.h"
 namespace Lina { namespace Graphics{
-    Texture::Texture(const std::string& path, bool flip):mRenderId(0), mPath(path){
+    static int slotCounter = 0;
+    Texture::Texture(const std::string& path, bool flip):mRenderId(0), mPath(path)
+    {
+        setTextureFromPath(path, flip);
+    }
+    void Texture::setTextureFromPath(const std::string& path, bool flip)
+    {
         int width, height, channels;
         stbi_set_flip_vertically_on_load(flip);
 		stbi_uc* data = nullptr;
         {
         data = stbi_load(path.c_str(), &width, &height, &channels, 0);
         }
-        if (data){
+        if (data)
+        {
             mWidth = width;
             mHeight = height;
             GLenum internalFormat = 0, dataFormat = 0;
@@ -25,7 +32,9 @@ namespace Lina { namespace Graphics{
             mInternalFormat = internalFormat;
             mDataFormat = dataFormat;
             glGenTextures(1, &mRenderId);
+            glActiveTexture(GL_TEXTURE0 + slotCounter++);
             glBindTexture(GL_TEXTURE_2D, mRenderId);
+            std::cout<<"\nCurrent SlotL "<<slotCounter<<'\n';
 
             glTextureParameteri(mRenderId, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 			glTextureParameteri(mRenderId, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
@@ -38,8 +47,9 @@ namespace Lina { namespace Graphics{
                             mWidth, mHeight,
                             0, mDataFormat,
                             GL_UNSIGNED_BYTE, data);
+            stbi_image_free(data);
+            std::cout<<"Generated\n";
                 }
-        free(data);
     }
     Texture::~Texture(){
         glDeleteTextures(1, &mRenderId);

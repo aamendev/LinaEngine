@@ -1,8 +1,8 @@
 #pragma once
 #include "FreeList.h"
-#include "Memory.h"
+#include "../../Types.h"
 #define DEFAULT_ALIGNMENT (16)
-namespace Lina { namespace Memory{
+namespace Lina { namespace Allocation{
     struct AllocatorSpecs
     {
         u64 sTotalSize;
@@ -31,7 +31,7 @@ namespace Lina { namespace Memory{
              * @param size -> maximum possible allocation size.
              * @return: true on success, false on failure.
              */
-            b8 Init(u64 size);
+            b8 Init(u64 size, void* block);
             /**
              * @brief: custom destructor. Zeros all memory that was once allocated.
              * @return: true (always success).
@@ -49,16 +49,37 @@ namespace Lina { namespace Memory{
              * @return a pointer to the aligned block.
              */
             void* allocateWithAlignment(u64 size, u16 alignment);
-            b8 freeBlock();
-            b8 clear();
-            u64 getMemoryRequirement(u64 size);
+            /**
+             * @brief returns the memory requirement for the allocator.
+             * @param size -> the total size to be used by the allocator.
+             * @return the required size.
+             */
+            static u64 getMemoryRequirement(u64 size);
+            /**
+             * @brief Frees a given memory block. Delegates the call to freeWithAlignment.
+             * @param block -> block to be freed.
+             * @return true on success, false on failure.
+             */
             b8 free(void* block);
+            /**
+             * @brief Frees a given memory block.
+             * @param block -> block to be freed.
+             * @return true on success, false on failue.
+             */
             b8 freeWithAlignment(void* block);
             /**
              * @brief gets the total remaining free space from the allocator.
              * @return the amount of free space.
              */
             u64 getFreeSpace();
+            /**
+             * @brief gets the size and the alignment of the given block.
+             * @param block -> block to get the size an alignment of.
+             * @return a pair of the form (size, alignment).
+             */
+            std::pair<u64, u16> getSizeAndAlignment(void*block);
+            u64 getSize(void* block);
+            u16 getAlignment(void* block);
             /**
              * @brief gets the total space acquired by the allocator.
              * @return the total allocated space.
@@ -95,5 +116,7 @@ namespace Lina { namespace Memory{
             }
         private:
             void* mMemory;
+            friend class Memory;
     };
 }}
+

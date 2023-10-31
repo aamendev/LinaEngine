@@ -6,10 +6,14 @@
 namespace Lina{namespace Graphics{
 	Window::Window(const char * name, float width, float height)
     {
+        Create(name, width, height);
+	}
+    void Window::Create(const char* name, float width, float height)
+    {
         mWindowPointer = WindowPointer{ .mWidth = width, .mHeight = height, .mName = name,.EventCallBack = NULL};
 		if (!init())
 			glfwTerminate();
-	}
+    }
 	Window::~Window(){
 		glfwTerminate();
 	}
@@ -17,7 +21,7 @@ namespace Lina{namespace Graphics{
 		if (!glfwInit()){
 			return false;
 		}
-		mWindow = glfwCreateWindow(mWindowPointer.mWidth, mWindowPointer.mHeight
+        mWindow = glfwCreateWindow(mWindowPointer.mWidth, mWindowPointer.mHeight
                                 ,mWindowPointer.mName,nullptr, nullptr);
 		if (!mWindow){
 			glfwTerminate();

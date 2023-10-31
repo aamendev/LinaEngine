@@ -12,8 +12,11 @@ namespace Lina{namespace Graphics{
 		std::string mFilepath;
 		unsigned int mRenderId;
 	public:
+        Shader() {}
 		Shader(const std::string& filepath);
 		~Shader();
+
+        void setShaderFromPath(const std::string& filepath);
 
 		void bind() const;
 		void unbind() const;
@@ -24,9 +27,13 @@ namespace Lina{namespace Graphics{
         void setUniformVec3(const std::string& name, Math::Vector3D& program);
 
         void setUniformMat4(const std::string& name, Math::Matrix4D& program);
+        void setUniformMat4(const std::string& name, Math::Matrix4D&& program);
         void setUniformMat3(const std::string& name, Math::Matrix3D& program);
+
+        std::string getPath() {return mFilepath;}
 	private:
 		shaderProgramSource parseShader(const std::string& filepath);
+        shaderProgramSource cParseShader(const std::string& filepath);
 		unsigned int createShader(const std::string& vertexShader, const std::string& fragmentShader);
 		unsigned int compileShader(unsigned int type, const std::string& source);
 		int getUniformLocation(const std::string& name);

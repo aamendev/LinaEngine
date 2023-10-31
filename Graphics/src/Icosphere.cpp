@@ -3,7 +3,14 @@
 #include "../Icosphere.h"
 #include <cmath>
 namespace Lina{ namespace Graphics { namespace Shapes{
-    Icosphere::Icosphere(float radius): mRadius(radius){
+    Icosphere::Icosphere(float radius): mRadius(radius)
+    {
+        constructSphere(radius);
+    }
+    void Icosphere::constructSphere(float radius)
+    {
+        mRadius = radius;
+
         const float PI = 3.1415926f;
         const float H_ANGLE = PI / 180 * 72;
         const float V_ANGLE = atanf(1.0f / 2);

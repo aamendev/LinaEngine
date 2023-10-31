@@ -1,13 +1,15 @@
 #include "include/FreeList.h"
+#include "include/Memory.h"
 #define INVALID 2348323453u
-namespace Lina{ namespace Memory{
+extern Lina::Manager::Memory gMemoryManager;
+namespace Lina{ namespace Allocation{
 
     u64 FreeList::getMemoryRequirement(u64 totalSize)
     {
         u64 maxEntries = totalSize / (sizeof(void*) * sizeof(Node));
         return sizeof(ListSpecs) + (sizeof(Node) * maxEntries);
     }
-    b8 FreeList::Init(u64 totalSize)
+    b8 FreeList::Init(u64 totalSize, void* block)
     {
         u64 maxEntries = totalSize / (sizeof(void*) * sizeof(Node));
         u64 memoryRequirement = FreeList::getMemoryRequirement(totalSize);
@@ -18,8 +20,8 @@ namespace Lina{ namespace Memory{
             std::cout<<"Minimum: " << minimumSize << ", Allocated: " << totalSize;
             return false;
         }
-        mMemory = Manager::Memory::lalloc(memoryRequirement);
-        Manager::Memory::lzero(mMemory, memoryRequirement);
+        mMemory = block;
+        gMemoryManager.lzero(mMemory, memoryRequirement);
         ListSpecs* specs = reinterpret_cast<ListSpecs*>(mMemory);
         specs->sNodes = reinterpret_cast<Node*>((u8*)mMemory + sizeof(ListSpecs));
         specs->sMaxEntries = maxEntries;
@@ -42,7 +44,8 @@ namespace Lina{ namespace Memory{
         if (mMemory)
         {
             ListSpecs* specs = reinterpret_cast<ListSpecs*>(mMemory);
-            Manager::Memory::lfree(mMemory, FreeList::getMemoryRequirement(specs->sTotalSize));
+            gMemoryManager.lzero(mMemory, FreeList::getMemoryRequirement(specs->sTotalSize));
+            mMemory = 0;
             return true;
         }
         return false;
@@ -56,7 +59,7 @@ namespace Lina{ namespace Memory{
     u64 FreeList::allocateBlock(u64 size)
     {
         if (!mMemory)
-            return false;
+            return INVALID;
         ListSpecs* specs = reinterpret_cast<ListSpecs*>(mMemory);
         u64 nodeOffset = 0;
         Node* node = specs->sHead;

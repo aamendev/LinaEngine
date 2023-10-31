@@ -2,21 +2,59 @@
 #include <string>
 #include <fstream>
 #include <sstream>
+#include <filesystem>
 #include "../glad.h"
 #include "../shaders.h"
 #include "../../main/LinaMath.h"
+#include "../shaderString.h"
 namespace Lina{	namespace Graphics{
 	Shader::Shader(const std::string& filepath): mFilepath(filepath), mRenderId(0){
-		shaderProgramSource source = parseShader(filepath);
-		mRenderId = createShader(source.vertexSource, source.fragmentSource);
+        setShaderFromPath(filepath);
 	}
 	Shader::~Shader(){
 		glDeleteProgram(mRenderId);
 	}
+    void Shader::setShaderFromPath(const std::string& filepath)
+    {
+        mFilepath = filepath;
+        shaderProgramSource source = parseShader(filepath);
+        //shaderProgramSource source = {stringShaderVert, stringShaderFrag};
+        mRenderId = createShader(source.vertexSource, source.fragmentSource);
+    }
+    shaderProgramSource Shader::cParseShader(const std::string& filepath)
+    {
+        FILE* stream = fopen(filepath.c_str(), "r");
+        if (!stream)
+        {
+            std::cout<<"Fata!\n";
+            return {NULL, NULL};
+        }
+		enum class shaderType{
+			NONE = -1, VERTEX = 0, FRAGMENT = 1
+		};
+		char* buffer = NULL;
+        size_t size = 0;
+		std::stringstream ss[2];
+		shaderType type = shaderType::NONE;
+		while (getline(&buffer, &size, stream) != -1){
+            std::string line(buffer);
+			if(line.find("#shader") != std::string::npos){
+				if(line.find("vertex") != std::string::npos){
+					type = shaderType::VERTEX;
+				}else if (line.find("fragment") != std::string::npos){
+					type = shaderType::FRAGMENT;
+				}
+			}else{
+				ss[(int)type] << line <<'\n';
+			}
+		}
+        fclose(stream);
+		return {ss[0].str(), ss[1].str()};
+	}
 
-	shaderProgramSource Shader::parseShader(const std::string& filepath){
+	shaderProgramSource Shader::parseShader(const std::string& filepath)
+    {
 		std::ifstream stream(filepath);
-
 		enum class shaderType{
 			NONE = -1, VERTEX = 0, FRAGMENT = 1
 		};
@@ -24,7 +62,7 @@ namespace Lina{	namespace Graphics{
 		std::string line;
 		std::stringstream ss[2];
 		shaderType type = shaderType::NONE;
-		while (getline(stream, line)){
+		while (std::getline(stream, line)){
 			if(line.find("#shader") != std::string::npos){
 				if(line.find("vertex") != std::string::npos){
 					type = shaderType::VERTEX;
@@ -40,6 +78,7 @@ namespace Lina{	namespace Graphics{
 
 	unsigned int Shader::createShader(const std::string& vertexShader, const std::string& fragmentShader){
 		unsigned int program = glCreateProgram();
+        std::cout<<vertexShader<<fragmentShader;
 		unsigned int vs = compileShader(GL_VERTEX_SHADER,vertexShader);
 		unsigned int fs = compileShader(GL_FRAGMENT_SHADER, fragmentShader);
 
@@ -87,6 +126,9 @@ namespace Lina{	namespace Graphics{
 		return glGetUniformLocation(mRenderId, name.c_str());
 	}
     void Shader::setUniformMat4(const std::string& name, Math::Matrix4D& program){
+        glUniformMatrix4fv(getUniformLocation(name), 1, GL_FALSE, &program[0].x);
+    }
+    void Shader::setUniformMat4(const std::string& name, Math::Matrix4D&& program){
         glUniformMatrix4fv(getUniformLocation(name), 1, GL_FALSE, &program[0].x);
     }
     void Shader::setUniformMat3(const std::string& name, Math::Matrix3D& program){

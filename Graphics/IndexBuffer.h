@@ -7,9 +7,11 @@ namespace Lina{namespace Graphics{
 		unsigned int mRenderId;
 		unsigned int mCount;
 	public:
+        IndexBuffer() {}
 		IndexBuffer(const unsigned int* data, unsigned int count);
 		~IndexBuffer();
 
+        void constructFromDataPointer(const unsigned int* data, unsigned int count);
 		void bind() const;
 		void unbind() const;
 		inline unsigned int getCount() {return mCount;}

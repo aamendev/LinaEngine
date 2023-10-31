@@ -4,11 +4,13 @@
 namespace Lina { namespace Core{
     class Layer
     {
-        virtual ~Layer();
+        public:
+        virtual ~Layer() {};
 
         virtual void onAttach() {}
         virtual void onDetach() {}
         virtual void onUpdate(TimeStep ts) {}
+        virtual void onGUIRender() {}
         virtual void onEvent(Events::Event& e) {}
     };
 

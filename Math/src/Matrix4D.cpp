@@ -8,10 +8,10 @@ namespace Lina{ namespace Math{
 		float n10, float n11, float n12, float n13,
 		float n20, float n21, float n22, float n23,
 		float n30, float n31, float n32, float n33){
-		n[0][0] = n00; n[0][1] = n01; n[0][2] = n02; n[0][3] = n03;
-		n[1][0] = n10; n[1][1] = n11; n[1][2] = n12; n[1][3] = n13;
-		n[2][0] = n20; n[2][1] = n21; n[2][2] = n22; n[2][3] = n23;
-		n[3][0] = n30; n[3][1] = n31; n[3][2] = n32; n[3][3] = n33;
+		n[0][0] = n00; n[0][1] = n10; n[0][2] = n20; n[0][3] = n30;
+		n[1][0] = n01; n[1][1] = n11; n[1][2] = n21; n[1][3] = n31;
+		n[2][0] = n02; n[2][1] = n12; n[2][2] = n22; n[2][3] = n32;
+		n[3][0] = n03; n[3][1] = n13; n[3][2] = n23; n[3][3] = n33;
 	}
 
 	Matrix4D::Matrix4D(const Vector4D& v0, const Vector4D& v1, const Vector4D& v2, const Vector4D& v3){
@@ -61,10 +61,10 @@ namespace Lina{ namespace Math{
 		);
 	}
 	std::ostream& operator<<(std::ostream& os, const Matrix4D& m){
-		os << std::setprecision(4)<<std::fixed<<"[" << m[0].x<< ", "<< m[0].y << ", "<< m[0].z << "\n "
-		<< m[1].x<< ", "<< m[1].y << ", "<< m[1].z << "\n "
-		<< m[2].x<< ", "<< m[2].y << ", "<< m[2].z << "\n "
-		<< m[3].x<< ", "<< m[3].y << ", "<< m[3].z << "]";
+		os << std::setprecision(4)<<std::fixed<<"[" << m[0].x<< ", "<< m[0].y << ", "<< m[0].z<< ", "<<m[0].w<< "\n "
+		<< m[1].x<< ", "<< m[1].y << ", "<< m[1].z<<", "<<m[1].w << "\n "
+		<< m[2].x<< ", "<< m[2].y << ", "<< m[2].z<<", "<<m[2].w << "\n "
+		<< m[3].x<< ", "<< m[3].y << ", "<< m[3].z<<", "<<m[3].w << "]";
 
 		return os;
 	}

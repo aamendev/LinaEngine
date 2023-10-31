@@ -1,11 +1,16 @@
 #include "../headers/Application.h"
-
+#include "../../PlanetarySystem/Celestials/include/Shuttle.h"
+#include "../../lhf.h"
 namespace Lina{ namespace Core{
-    Application::Application(Graphics::Window& window, Root& root)
+    Application* Application::gApplication = nullptr;
+    Application::Application(Graphics::Window* window, Root& root)
     {
-        mWindow = &window;
+        gApplication = this;
+        mWindow = window;
         mRoot = &root;
+        mRoot->Init();
         mWindow->setEventCallBack(FORWARD_CALL(Application::onEvent));
+        mGUILayer = lnew(Lina::Layer::GUI());
         mRunning = true;
     }
     void Application::onEvent(Events::Event& e)
@@ -16,48 +21,50 @@ namespace Lina{ namespace Core{
     }
     void Application::run()
     {
-        std::vector<ECS::Entity> entities= mRoot->mECSManager->getEntities();
-        ECS::Entity entity = entities[0];
-        ECS::Component::Type renderType = ECS::Component::Type::Render;
-        ECS::Component::Type transformType = ECS::Component::Type::Transform;
-        ECS::Component::Render* render = dynamic_cast<ECS::Component::Render*>(entity.findComponent(renderType));
-        ECS::Component::Transform* trans = dynamic_cast<ECS::Component::Transform*>(entity.findComponent(transformType));
-        Graphics::VertexArray va;
-        Graphics::Texture tex = render->getTexture();
-        Graphics::Renderable obj = render->getRenderable();
-        Graphics::VertexBufferLayout layout;
-        std::vector<float> vertices = obj.getFullVertices();
-        std::vector<unsigned int> indices = obj.getIndices();
-        Lina::Graphics::VertexBuffer vb(&vertices[0], vertices.size() * sizeof(vertices[0]));
-        Lina::Graphics::IndexBuffer ib(&indices[0], indices.size() * sizeof(indices[0]));
-        Lina::Graphics::Shader shader = render->getShader();
-        layout.push<float>(3);
-        layout.push<float>(2);
-        shader.bind();
-        vb.bind();
-        va.addBuffer(vb, layout);
-        va.bind();
-        ib.bind();
-        tex.bind();
-        mRoot->mRenderManager->enableCulling();
-        mRoot->mRenderManager->setFrontFace(GL_CCW);
-        Manager::IndexedDrawingSpecifications ispec = {GL_TRIANGLES,indices.size(), GL_UNSIGNED_INT, nullptr};
+        std::vector<ECS::Entity> entities = mRoot->mECSManager->getEntities();
+        std::vector<ECS::Component::Transform*> trans;
+        for (auto& E : entities)
+        {
+          trans.push_back(dynamic_cast<ECS::Component::Transform*>(E.findComponent(ECS::Component::Type::Transform)));
+        }
+        std::vector<std::pair<Lina::Manager::IndexedDrawingSpecifications, Lina::Manager::DrawData>> drawing;
+        for (auto& E: entities)
+        {
+            drawing.push_back(mRoot->mRenderManager->setup(E));
+        }
         float theta = 0.0f;
-
+        Planetarium::Shuttle* shuttle = lnew<Planetarium::Shuttle>();
+        shuttle->init();
+        mGUILayer->onAttach();
         while (mRunning)
         {
             mWindow->clear();
-            mRoot->mRenderManager->drawIndexed(ispec);
+            shuttle->update();
+            mGUILayer->begin();
+            for (int i = 0; i < drawing.size(); i++)
+            {
+            mRoot->mRenderManager->bind(drawing[i].second);
+            mRoot->mRenderManager->drawIndexed(drawing[i].first);
 
+            Math::Transform4D orientation = shuttle->getMatrix() * trans[i]->getTransform();
 
-            Math::Transform4D orientation = trans->getTransform();
-            shader.setUniformMat4("rotationMat", orientation);
-            trans->updateRotation(theta, Math::Vector3D(0,1,0));
+            drawing[i].second.shader->setUniformMat4("rotationMat",
+                     Math::Util::projMatrix(90.0f, mWindow->getWidth() / mWindow-> getHeight())
+                     * orientation);
+            trans[i]->updateRotation(theta, Math::Vector3D(0,1,0));
             theta += 0.05f;
+            }
+            mGUILayer->end();
+
             mWindow->update();
-            if (mRoot->mInputManager->isKeyPressed(Key::Q))
+
+
+            if (Manager::Input::isKeyPressed(Key::Q))
             {
                 std::cout<<"Closing Now...";
+                mGUILayer->onDetach();
+                ldelete(mGUILayer);
+                //mRoot->mRenderManager->freeLina::Manager::DrawData(drawing.second);
                 mRunning = false;
             }
         }

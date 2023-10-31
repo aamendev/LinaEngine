@@ -148,6 +148,22 @@ namespace Lina{	namespace Math{ namespace  Util {
 				0, 0, s.z, 0
 				);
 		}
+
+        Matrix4D projMatrix(float fov, float ar)
+        {
+            float rad = fov * 3.1415f / 180.0f;
+            float tanHalfFov = tanf(rad * 0.5f);
+            float f = 1 / tanHalfFov;
+            float nearf = 1.0f;
+            float farf = 10.0f;
+            float range = farf-nearf;
+            float A = (-farf - nearf) / range;
+            float B = 2.0f * farf * nearf / range;
+            return Matrix4D( f / ar, 0, 0, 0,
+                             0, f, 0, 0,
+                             0, 0, A, B,
+                             0, 0, 1, 0);
+        }
 		Quatrenion lerp(const Quatrenion& q0, const Quatrenion& q1, float beta){
 			return (q0 * (1 - beta) + q1 * beta) / (q0 * (1 - beta) + q1 * beta).magnitude();
 		}

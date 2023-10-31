@@ -6,8 +6,12 @@
 namespace Lina{ namespace Graphics{ namespace Shapes{
     class Icosphere : public Renderable{
     public:
+        Icosphere() {}
         Icosphere(float radius);
+        void constructSphere(float radius);
+        void setRadius(float radius) {mRadius = radius;}
         void subdivide(unsigned int layers);
+        float getRadius() const {return mRadius;}
     private:
         float mRadius;
         int subdivisions;

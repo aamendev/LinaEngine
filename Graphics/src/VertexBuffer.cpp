@@ -1,14 +1,18 @@
 #include "../VertexBuffer.h"
 namespace Lina{namespace Graphics{
 	VertexBuffer::VertexBuffer(const void* data, unsigned int size){
-		glGenBuffers(1, &mRenderId);
-		glBindBuffer(GL_ARRAY_BUFFER, mRenderId);
-		glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW);
+        constructFromDataPointer(data, size);
 	}
 	VertexBuffer::~VertexBuffer(){
         unbind();
 		glDeleteBuffers(1, &mRenderId);
 	}
+    void VertexBuffer::constructFromDataPointer(const void* data, unsigned int size)
+    {
+		glGenBuffers(1, &mRenderId);
+		glBindBuffer(GL_ARRAY_BUFFER, mRenderId);
+		glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW);
+    }
 	void VertexBuffer::bind() const{
 		glBindBuffer(GL_ARRAY_BUFFER, mRenderId);
 	}

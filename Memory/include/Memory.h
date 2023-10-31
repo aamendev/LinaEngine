@@ -2,6 +2,7 @@
 #include <cstring>
 #include <iostream>
 #include "../../Types.h"
+#include "Allocator.h"
 namespace Lina{ namespace Manager{
     /**
      * @brief: enumeration of different memory categories to be grouped.
@@ -28,7 +29,14 @@ namespace Lina{ namespace Manager{
         u64 perCategoryAllocations[MAX];
         u64 currentUsage() {return totalAllocations - totalFrees;}
     };
-
+    struct MemorySpecs
+    {
+        u64 sTotalSize;
+        MemoryStats sStats;
+        u64 sMemoryRequirement;
+        Lina::Allocation::Allocator sAllocator;
+        void* sAllocatorBlock;
+    };
     class Memory
     {
         public:
@@ -43,31 +51,31 @@ namespace Lina{ namespace Manager{
             /**
              * @brief: custom constructor.
              */
-            static void Init();
+            b8 Init(u64 totalSize);
             /**
              * @brief: custom destructor
              */
-            static MemoryStats Shutdown();
+            MemoryStats ShutDown();
             /**
              * @brief: allocates memory with a given size. Aligns based on category.
              * @param size -> size of memory block
              * @param category -> memory category
              * @return: void pointer to allocated memory.
              */
-            static void* lalloc(u64 size, MemoryCategory category = UNKNOWN);
+            void* lalloc(u64 size, MemoryCategory category = UNKNOWN);
             /**
              * @brief: frees allocated memory block of given size.
              * @param block-> pointer to memory block to be freed.
              * @param size-> size of memory block
              */
-            static void lfree(void* block, u64 size);
+            b8 lfree(void* block, u64 size);
             /**
              * @brief: assigns zero to the memory block.
              * @param block -> memory block
              * @param size -> block size.
              * @return: pointer to memory block.
              */
-            static void* lzero(void* block, u64 size);
+            void* lzero(void* block, u64 size);
             /**
              * @brief: copies memory data between blocks.
              * @param dest -> destination block.
@@ -75,7 +83,7 @@ namespace Lina{ namespace Manager{
              * @size: size of data.
              * @return: pointer to copied data.
              */
-            static void* lcopy(void* dest, const void* source, u64 size);
+            void* lcopy(void* dest, const void* source, u64 size);
             /**
              * @brief: Fills datablock with a value.
              * @param dest -> destination block to be filled.
@@ -83,15 +91,20 @@ namespace Lina{ namespace Manager{
              * @param size -> size of block.
              * @return: pointer to set memory block.
              */
-            static void* lset(void* dest, i32 value, u64 size);
+            void* lset(void* dest, i32 value, u64 size);
             /**
              * @brief: Creates a stack allocator.
              * @param memory -> memory address to store the allocator in.
              * @param size -> size of the stack allocator.
              * @return: true if succeeded, false if not.
              */
-            static b8 createStackAllocator(void* memory, u64 size);
-            static void destroyStackAllocator();
+             b8 createStackAllocator(void* memory, u64 size);
+             std::pair<u64, u16> getSizeAndAlignment(void* block);
+             u64 getSize(void* block);
+             u16 getAlignment(void* block);
+             void* lallocWithAlignment(u64 size, MemoryCategory cat, u16 alignment);
+             void destroyStackAllocator();
     };
     std::ostream& operator<<(std::ostream& os, MemoryStats& stat);
+    std::ostream& operator<<(std::ostream& os, MemoryStats&& stat);
 }}

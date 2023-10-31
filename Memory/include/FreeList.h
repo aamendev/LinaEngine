@@ -1,7 +1,7 @@
 #pragma once
-#include "Memory.h"
+#include <iostream>
 #include "../../Types.h"
-namespace Lina { namespace Memory{
+namespace Lina { namespace Allocation{
     struct Node
     {
         u64 size;
@@ -33,7 +33,7 @@ namespace Lina { namespace Memory{
              * @brief: custom construction function
              * @return: true on success, false on failue.
              */
-            b8 Init(u64 totalSize);
+            b8 Init(u64 totalSize, void* block);
             /**
              * @brief: custom destructor function.
              * @return: true on success, false on failue.
