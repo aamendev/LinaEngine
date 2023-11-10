@@ -9,7 +9,8 @@ namespace Lina{ namespace Events{
         WindowClose, WindowResize, WindoFocus, WindowMove,
         AppTick, AppUpdate, AppRender,
         KeyPressed, KeyReleased, KeyTyped,
-        MousePressed, MouseReleased, MouseMoved, MouseScrolled
+        MousePressed, MouseReleased, MouseMoved, MouseScrolled,
+        RenderSpawn
     };
     enum Category
     {
@@ -19,7 +20,8 @@ namespace Lina{ namespace Events{
         Keyboard = 1 << 2,
         Mouse = 1 << 3,
         MouseButton = 1 << 4,
-        Window = 1 << 5
+        Window = 1 << 5,
+        Render = 1 << 6
     };
 #define EVENT_TYPE(type) static Type getStaticType() { return Type::type;}\
                         virtual Type getType() const override {return getStaticType();}\

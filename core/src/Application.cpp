@@ -1,5 +1,6 @@
 #include "../headers/Application.h"
 #include "../../PlanetarySystem/Celestials/include/Shuttle.h"
+#include "../../PlanetarySystem/Celestials/include/Planet.h"
 #include "../../lhf.h"
 namespace Lina{ namespace Core{
     Application* Application::gApplication = nullptr;
@@ -21,23 +22,26 @@ namespace Lina{ namespace Core{
     }
     void Application::run()
     {
-        std::vector<ECS::Entity> entities = mRoot->mECSManager->getEntities();
-        std::vector<ECS::Component::Transform*> trans;
-        for (auto& E : entities)
-        {
-          trans.push_back(dynamic_cast<ECS::Component::Transform*>(E.findComponent(ECS::Component::Type::Transform)));
-        }
-        std::vector<std::pair<Lina::Manager::IndexedDrawingSpecifications, Lina::Manager::DrawData>> drawing;
-        for (auto& E: entities)
-        {
-            drawing.push_back(mRoot->mRenderManager->setup(E));
-        }
         float theta = 0.0f;
         Planetarium::Shuttle* shuttle = lnew<Planetarium::Shuttle>();
         shuttle->init();
         mGUILayer->onAttach();
+        std::vector<ECS::Entity*> entities = mRoot->mECSManager->getEntities();
+        std::vector<ECS::Component::Transform*> trans;
+        std::vector<std::pair<Manager::IndexedDrawingSpecifications, Manager::DrawData>> drawing;
+        entities = mRoot->mECSManager->getEntities();
         while (mRunning)
         {
+            for (auto& E : entities)
+            {
+                trans.push_back(dynamic_cast<ECS::Component::Transform*>(E->findComponent(ECS::Component::Type::Transform)));
+            }
+            for (auto& E: entities)
+            {
+                drawing.push_back(mRoot->mRenderManager->setup(*E));
+            }
+            if (entities.size() > 0)
+                entities.pop_back();
             mWindow->clear();
             shuttle->update();
             mGUILayer->begin();

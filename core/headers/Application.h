@@ -21,7 +21,7 @@ namespace Lina { namespace Core{
 
             void onEvent(Events::Event& e);
 
-
+            void checkForEvent();
             Graphics::Window& getWindow() { return *mWindow; }
 
             void close();

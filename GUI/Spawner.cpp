@@ -1,6 +1,7 @@
 #include <iostream>
 #include "../core/headers/Application.h"
 #include "./include/Spawner.h"
+#include "../PlanetarySystem/Celestials/include/Planet.h"
 namespace Lina { namespace GUI{
     static ScreenSpecs specs;
     static b8 remainOpen = true;
@@ -30,7 +31,7 @@ namespace Lina { namespace GUI{
             ImGui::SetCursorPos(ImVec2(specs.sWidth / 2, specs.sHeight/2));
             if (ImGui::Button("Planet"))
             {
-                std::cout<<"PlanetSpawned <)\n";
+                Planetarium::Planet::onSpawnEvent(Events::Spawnable::Planet);
             }
             ImGui::End();
             ImGui::PopStyleColor();

@@ -15,14 +15,14 @@ namespace Lina{ namespace Core{
             Root() {}
             b8 Init()
             {
-                mRenderManager = std::make_unique<Manager::Renderer>(gRenderManager);
-                mECSManager = std::make_unique<Manager::ECSManager>(gECSManager);
-                mMemoryManager = std::make_unique<Manager::Memory>(gMemoryManager);
+                mRenderManager = &(gRenderManager);
+                mECSManager = &(gECSManager);
+                mMemoryManager = &(gMemoryManager);
             }
         private:
-            std::unique_ptr<Manager::Renderer> mRenderManager;
-            std::unique_ptr<Manager::ECSManager> mECSManager;
-            std::unique_ptr<Manager::Memory> mMemoryManager;
+            Manager::Renderer* mRenderManager;
+            Manager::ECSManager* mECSManager;
+            Manager::Memory* mMemoryManager;
             friend class Application;
             /*std::std::make_unique_ptr<Manager::File> mFileManager;
               std::std::make_unique_ptr<Manager::Scene> mSceneManager;

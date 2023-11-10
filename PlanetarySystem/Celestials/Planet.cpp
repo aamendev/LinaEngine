@@ -28,4 +28,13 @@ namespace Lina{ namespace Planetarium{
 
       gECSManager.addEntity(planet);
     }
+    b8 Planet::onSpawnEvent(Events::Spawn s)
+    {
+       if (s.getSpawnable() == Events::Spawnable::Planet)
+       {
+            Planet::spawn();
+            return true;
+       }
+       return false;
+    }
 }}

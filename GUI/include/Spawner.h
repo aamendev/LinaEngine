@@ -3,6 +3,7 @@
 #include "../../Memory/include/MemoryOverload.h"
 #include "Screen.h"
 #include "../../Types.h"
+#include "../../Events/Events.h"
 namespace Lina{ namespace GUI{
     class SpawnerScreen : public Screen
     {

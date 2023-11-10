@@ -56,8 +56,8 @@ namespace Lina{ namespace Layer{
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
-        Lina::GUI::SpawnerScreen::Load();
         Lina::GUI::MainScreen::Load();
+        Lina::GUI::SpawnerScreen::Load();
         //ImGui::ShowDemoWindow();
         //ImGuizmo::BeginFrame();
     }

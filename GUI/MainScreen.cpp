@@ -11,10 +11,11 @@ namespace Lina{ namespace GUI{
     static ImVec4 color = ImVec4(0.0f, 0.0f, 0.0f, 0.5f);
     b8 MainScreen::Setup()
     {
-        auto* BG = lnew<Lina::Graphics::Texture>();
+        /*auto* BG = lnew<Lina::Graphics::Texture>();
         bg = BG;
         BG->setTextureFromPath("../Assets/GUI/BG2.png");
-        BGImage = BG->getRenderId();
+        BGImage = BG->getRenderId();*/
+        return true;
     }
     b8 MainScreen::Load()
     {
@@ -44,7 +45,7 @@ namespace Lina{ namespace GUI{
     }
     b8 MainScreen::Unload()
     {
-        ldelete(bg);
+        //ldelete(bg);
         alreadyLoaded = false;
         remainOpen = false;
     }
