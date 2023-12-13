@@ -1,7 +1,8 @@
+#include "./Event.h"
 namespace Lina{ namespace Events{
-    class Listener
+    class IListener
     {
         public:
             virtual void onEvent(Event& e) = 0;
-    }
+    };
 }}

@@ -48,5 +48,6 @@ namespace Lina{ namespace GUI{
         //ldelete(bg);
         alreadyLoaded = false;
         remainOpen = false;
+        return true;
     }
 }}

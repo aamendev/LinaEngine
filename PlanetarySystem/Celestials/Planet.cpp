@@ -27,12 +27,14 @@ namespace Lina{ namespace Planetarium{
       planet->addComponent(transform);
 
       gECSManager.addEntity(planet);
+      return true;
     }
     b8 Planet::onSpawnEvent(Events::Spawn s)
     {
        if (s.getSpawnable() == Events::Spawnable::Planet)
        {
-            Planet::spawn();
+            //Planet::spawn();
+           std::cout<<"SpawnPlanet!\n";
             return true;
        }
        return false;

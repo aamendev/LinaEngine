@@ -1,12 +1,13 @@
 #pragma once
+#include "../Types.h"
 /* Taken From Cherno's Hazel Engine, comments removed */
 namespace Lina
 {
-    using KeyCode = uint16_t;
+    using KeyCode = u16;
 
     namespace Key
     {
-        enum : KeyCode
+        enum KeyCode
         {
            Space               = 32,
            Apostrophe          = 39,
@@ -138,11 +139,11 @@ namespace Lina
            Menu                = 348
        };
     }
-    using MouseCode = uint16_t;
+    using MouseCode = u16;
 
     namespace Mouse
     {
-        enum : MouseCode
+        enum MouseCode
         {
            Button0                = 0,
            Button1                = 1,

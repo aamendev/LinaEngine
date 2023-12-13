@@ -4,9 +4,6 @@ namespace Lina{ namespace Callbacks{
     void WindowResize(GLFWwindow* window, int width, int height)
     {
         Graphics::WindowPointer& p = *(Graphics::WindowPointer*)glfwGetWindowUserPointer(window);
-        p.mWidth;
-        p.mHeight;
-
         Lina::Events::WindowResize event(width, height);
         p.EventCallBack(event);
     }

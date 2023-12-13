@@ -2,6 +2,8 @@
 #include "../../lhf.h"
 #include "../../Types.h"
 #include <string>
+#include <vector>
+#include "../../Events/Event.h"
 namespace Lina{ namespace GUI{
     struct ScreenSpecs
     {
@@ -14,5 +16,6 @@ namespace Lina{ namespace GUI{
     {
         public:
             virtual ~Screen() = 0;
+            virtual std::vector<Events::Event> getEvents() = 0;
     };
 }}

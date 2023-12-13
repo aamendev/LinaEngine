@@ -18,6 +18,7 @@ namespace Lina{ namespace Core{
                 mRenderManager = &(gRenderManager);
                 mECSManager = &(gECSManager);
                 mMemoryManager = &(gMemoryManager);
+                return true;
             }
         private:
             Manager::Renderer* mRenderManager;

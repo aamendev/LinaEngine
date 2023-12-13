@@ -19,58 +19,69 @@ namespace Lina{ namespace Core{
         Events::Dispatcher dispatcher(e);
         dispatcher.dispatch<Events::WindowClose>(FORWARD_CALL(Application::onWindowClose));
         dispatcher.dispatch<Events::WindowResize>(FORWARD_CALL(Application::onWindowResize));
+        dispatcher.dispatch<Events::KeyPressed>(FORWARD_CALL(Application::onKeyPressed));
     }
     void Application::run()
     {
-        float theta = 0.0f;
+        Planetarium::Planet::spawn();
+        Planetarium::Planet::spawn();
+        std::vector<ECS::Entity*> entities = mRoot->mECSManager->getEntities();
         Planetarium::Shuttle* shuttle = lnew<Planetarium::Shuttle>();
         shuttle->init();
-        mGUILayer->onAttach();
-        std::vector<ECS::Entity*> entities = mRoot->mECSManager->getEntities();
         std::vector<ECS::Component::Transform*> trans;
-        std::vector<std::pair<Manager::IndexedDrawingSpecifications, Manager::DrawData>> drawing;
-        entities = mRoot->mECSManager->getEntities();
+        std::pair
+            <Manager::IndexedDrawingSpecifications, Manager::DrawData> drawing
+            = mRoot->mRenderManager->setup(*(entities[0]));
+
+        mGUILayer->onAttach();
         while (mRunning)
         {
             for (auto& E : entities)
             {
                 trans.push_back(dynamic_cast<ECS::Component::Transform*>(E->findComponent(ECS::Component::Type::Transform)));
             }
-            for (auto& E: entities)
-            {
-                drawing.push_back(mRoot->mRenderManager->setup(*E));
-            }
-            if (entities.size() > 0)
-                entities.pop_back();
             mWindow->clear();
             shuttle->update();
             mGUILayer->begin();
-            for (int i = 0; i < drawing.size(); i++)
+
+            mRoot->mRenderManager->bind(drawing.second);
             {
-            mRoot->mRenderManager->bind(drawing[i].second);
-            mRoot->mRenderManager->drawIndexed(drawing[i].first);
+            Math::Transform4D orientation = shuttle->getMatrix() * trans[0]->getTransform();
 
-            Math::Transform4D orientation = shuttle->getMatrix() * trans[i]->getTransform();
-
-            drawing[i].second.shader->setUniformMat4("rotationMat",
+            drawing.second.shader->setUniformMat4("rotationMat",
                      Math::Util::projMatrix(90.0f, mWindow->getWidth() / mWindow-> getHeight())
                      * orientation);
-            trans[i]->updateRotation(theta, Math::Vector3D(0,1,0));
-            theta += 0.05f;
+            trans[0]->updatePosition(Math::Point3D(0.0f,0.0f,3.0f));
+            mRoot->mRenderManager->bind(drawing.second);
+            mRoot->mRenderManager->drawIndexed(drawing.first);
+            }
+
+            {
+            Math::Transform4D orientation = shuttle->getMatrix()
+                * trans[1]->getTransform();
+
+            drawing.second.shader->setUniformMat4("rotationMat",
+                     Math::Util::projMatrix(
+                         90.0f,
+                         mWindow->getWidth() / mWindow-> getHeight())
+                     * orientation);
+            trans[1]->updatePosition(Math::Point3D(2.0f,2.0f,3.0f));
+            mRoot->mRenderManager->bind(drawing.second);
+            mRoot->mRenderManager->drawIndexed(drawing.first);
             }
             mGUILayer->end();
 
             mWindow->update();
 
 
-            if (Manager::Input::isKeyPressed(Key::Q))
+           /* if (Manager::Input::isKeyPressed(Key::Q))
             {
                 std::cout<<"Closing Now...";
                 mGUILayer->onDetach();
                 ldelete(mGUILayer);
                 //mRoot->mRenderManager->freeLina::Manager::DrawData(drawing.second);
                 mRunning = false;
-            }
+            }*/
         }
     }
     bool Application::onWindowClose(Events::WindowClose& e)
@@ -81,5 +92,18 @@ namespace Lina{ namespace Core{
     bool Application::onWindowResize(Events::WindowResize& e)
     {
        mRoot->mRenderManager->setViewPort(0, 0, e.getWidth(), e.getHeight());
+       return true;
+    }
+
+    bool Application::onKeyPressed(Events::KeyPressed& e)
+    {
+        switch(e.getKeyCode())
+        {
+            case Key::Q:
+                mRunning = false;
+            case Key::M:
+                std::cout<<"M\n";
+        }
+        return true;
     }
 }}

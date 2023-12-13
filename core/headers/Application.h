@@ -32,7 +32,7 @@ namespace Lina { namespace Core{
         private:
             bool onWindowClose(Events::WindowClose& e);
             bool onWindowResize(Events::WindowResize& e);
-
+            bool onKeyPressed(Events::KeyPressed& e);
         private:
             ApplicationSpecifications mSpecs;
             bool mRunning;
@@ -42,6 +42,7 @@ namespace Lina { namespace Core{
         private:
             Root* mRoot;
             static Application* gApplication;
+            std::vector<Core::Layer*> mLayers;
             Lina::Layer::GUI* mGUILayer;
             //friend int ::main();
     };

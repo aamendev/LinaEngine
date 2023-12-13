@@ -43,5 +43,6 @@ namespace Lina { namespace GUI{
     {
         alreadyLoaded = false;
         remainOpen = false;
+        return true;
     }
 }}
