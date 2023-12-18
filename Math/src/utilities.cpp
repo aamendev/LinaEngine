@@ -154,8 +154,8 @@ namespace Lina{	namespace Math{ namespace  Util {
             float rad = fov * 3.1415f / 180.0f;
             float tanHalfFov = tanf(rad * 0.5f);
             float f = 1 / tanHalfFov;
-            float nearf = 1.0f;
-            float farf = 10.0f;
+            float nearf = 0.0f;
+            float farf = 1000.0f;
             float range = farf-nearf;
             float A = (-farf - nearf) / range;
             float B = 2.0f * farf * nearf / range;

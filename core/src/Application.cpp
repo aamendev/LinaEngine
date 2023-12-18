@@ -1,7 +1,10 @@
 #include "../headers/Application.h"
 #include "../../PlanetarySystem/Celestials/include/Shuttle.h"
 #include "../../PlanetarySystem/Celestials/include/Planet.h"
+#include "../../Layers/include/Render.h"
 #include "../../lhf.h"
+#define JSONIMPL
+#include <json/utils.hpp>
 namespace Lina{ namespace Core{
     Application* Application::gApplication = nullptr;
     Application::Application(Graphics::Window* window, Root& root)
@@ -23,66 +26,62 @@ namespace Lina{ namespace Core{
     }
     void Application::run()
     {
-        Planetarium::Planet::spawn();
-        Planetarium::Planet::spawn();
+        std::vector<nlohmann::json> jsons = json::csvToJson("../data/planets.csv");
+        for (auto j : jsons)
+        {
+            Planetarium::Planet::spawn(j);
+        }
         std::vector<ECS::Entity*> entities = mRoot->mECSManager->getEntities();
         Planetarium::Shuttle* shuttle = lnew<Planetarium::Shuttle>();
         shuttle->init();
-        std::vector<ECS::Component::Transform*> trans;
+        std::vector<ECS::Component::Transform*>* trans =
+            lnew<std::vector<ECS::Component::Transform*> >();
+
+        std::vector<ECS::Component::Render*>* renders =
+            lnew<std::vector<ECS::Component::Render*> >();
         std::pair
             <Manager::IndexedDrawingSpecifications, Manager::DrawData> drawing
             = mRoot->mRenderManager->setup(*(entities[0]));
 
+        for (auto& E : entities)
+        {
+            trans->push_back(dynamic_cast<ECS::Component::Transform*>
+                    (E->findComponent(ECS::Component::Type::Transform)));
+            renders->push_back(dynamic_cast<ECS::Component::Render*>
+                    (E->findComponent(ECS::Component::Type::Render)));
+        }
         mGUILayer->onAttach();
+        float theta = 0.2f;
         while (mRunning)
         {
-            for (auto& E : entities)
-            {
-                trans.push_back(dynamic_cast<ECS::Component::Transform*>(E->findComponent(ECS::Component::Type::Transform)));
-            }
             mWindow->clear();
             shuttle->update();
             mGUILayer->begin();
 
-            mRoot->mRenderManager->bind(drawing.second);
+            int index = 0;
+            for (auto t: *trans)
             {
-            Math::Transform4D orientation = shuttle->getMatrix() * trans[0]->getTransform();
+            Math::Transform4D orientation = shuttle->getMatrix() * t->getTransform();
 
             drawing.second.shader->setUniformMat4("rotationMat",
                      Math::Util::projMatrix(90.0f, mWindow->getWidth() / mWindow-> getHeight())
                      * orientation);
-            trans[0]->updatePosition(Math::Point3D(0.0f,0.0f,3.0f));
-            mRoot->mRenderManager->bind(drawing.second);
-            mRoot->mRenderManager->drawIndexed(drawing.first);
-            }
-
-            {
-            Math::Transform4D orientation = shuttle->getMatrix()
-                * trans[1]->getTransform();
-
-            drawing.second.shader->setUniformMat4("rotationMat",
-                     Math::Util::projMatrix(
-                         90.0f,
-                         mWindow->getWidth() / mWindow-> getHeight())
-                     * orientation);
-            trans[1]->updatePosition(Math::Point3D(2.0f,2.0f,3.0f));
+            drawing.second.tex = renders->at(index++)->getTexture();
+            std::cout<<renders->at(index - 1)->getTexture()->getPath();
+            t->updateRotation(theta += 0.01f, Math::Util::yAxis());
             mRoot->mRenderManager->bind(drawing.second);
             mRoot->mRenderManager->drawIndexed(drawing.first);
             }
             mGUILayer->end();
 
             mWindow->update();
-
-
-           /* if (Manager::Input::isKeyPressed(Key::Q))
-            {
-                std::cout<<"Closing Now...";
-                mGUILayer->onDetach();
-                ldelete(mGUILayer);
-                //mRoot->mRenderManager->freeLina::Manager::DrawData(drawing.second);
-                mRunning = false;
-            }*/
         }
+        for (auto e : entities)
+        {
+            ldelete(e);
+        }
+        ldelete(renders);
+        ldelete(trans);
     }
     bool Application::onWindowClose(Events::WindowClose& e)
     {
@@ -101,8 +100,10 @@ namespace Lina{ namespace Core{
         {
             case Key::Q:
                 mRunning = false;
+                break;
             case Key::M:
                 std::cout<<"M\n";
+                break;
         }
         return true;
     }

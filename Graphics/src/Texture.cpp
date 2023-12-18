@@ -74,7 +74,11 @@ namespace Lina { namespace Graphics{
         glBindTexture(GL_TEXTURE_2D, mRenderId);
     }
     void Texture::bind() const{
-        glBindTexture(GL_TEXTURE_2D, mRenderId);
+        for (int i = 0; i < slotCounter; i++)
+        {
+            glActiveTexture(GL_TEXTURE0 + i);
+            glBindTexture(GL_TEXTURE_2D, mRenderId);
+        }
     }
     void Texture::unbind() const{
     }

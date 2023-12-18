@@ -33,5 +33,9 @@ namespace Lina{ namespace ECS{ namespace Component{
         setTransform(Transform);
     }
     Transform::Transform(Math::Point3D& p, Math::Matrix3D& rot)
-        :mPosition(p), mRotation(rot) {mType = Type::Transform;}
+        :mPosition(p), mRotation(rot) {
+            mType = Type::Transform;
+            auto Transform = Math::Util::transMatrix(rot, p);
+            setTransform(Transform);
+        }
 }}}

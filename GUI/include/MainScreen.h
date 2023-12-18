@@ -6,8 +6,8 @@ namespace Lina{ namespace GUI{
     class MainScreen : public Screen
     {
         public:
-            static b8 Load();
-            static b8 Unload();
-            static b8 Setup();
+            virtual b8 Load() override;
+            virtual b8 Unload() override;
+            virtual b8 Setup() override;
     };
 }}

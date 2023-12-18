@@ -83,6 +83,59 @@ namespace Lina{ namespace Manager{
         DrawData data = {tex, va, vb, ib, shader};
         return {ispec, data};
     }
+
+    std::pair<IndexedDrawingSpecifications, DrawData> Renderer::setup(Graphics::Renderable& r)
+    {
+        enableBlending(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        Graphics::VertexArray* va = lnew<Graphics::VertexArray>();
+        Graphics::Renderable* obj = &r;
+        Graphics::VertexBufferLayout layout;
+        std::vector<float> vertices = obj->getFullVertices();
+        std::vector<unsigned int> indices = obj->getIndices();
+        Lina::Graphics::VertexBuffer* vb = lnew<Lina::Graphics::VertexBuffer>();
+        vb->constructFromDataPointer(&vertices[0], vertices.size() * sizeof(vertices[0]));
+        Lina::Graphics::IndexBuffer* ib = lnew<Lina::Graphics::IndexBuffer>();
+        ib->constructFromDataPointer(&indices[0], indices.size() * sizeof(indices[0]));
+        layout.push<float>(3);
+        layout.push<float>(2);
+        va->addBuffer(*vb, layout);
+        enableCulling();
+        setFrontFace(GL_CCW);
+        IndexedDrawingSpecifications ispec =
+        {
+            GL_TRIANGLES, (unsigned int)indices.size(),
+            GL_UNSIGNED_INT, nullptr
+        };
+        DrawData data = {nullptr, va, vb, ib, nullptr};
+        return {ispec, data};
+    }
+
+    std::pair<IndexedDrawingSpecifications, DrawData> Renderer::setup(Graphics::Renderable&& r)
+    {
+        enableBlending(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        Graphics::VertexArray* va = lnew<Graphics::VertexArray>();
+        Graphics::Renderable* obj = &r;
+        Graphics::VertexBufferLayout layout;
+        std::vector<float> vertices = obj->getFullVertices();
+        std::vector<unsigned int> indices = obj->getIndices();
+        Lina::Graphics::VertexBuffer* vb = lnew<Lina::Graphics::VertexBuffer>();
+        vb->constructFromDataPointer(&vertices[0], vertices.size() * sizeof(vertices[0]));
+        Lina::Graphics::IndexBuffer* ib = lnew<Lina::Graphics::IndexBuffer>();
+        ib->constructFromDataPointer(&indices[0], indices.size() * sizeof(indices[0]));
+        layout.push<float>(3);
+        layout.push<float>(2);
+        va->addBuffer(*vb, layout);
+        enableCulling();
+        setFrontFace(GL_CCW);
+        IndexedDrawingSpecifications ispec =
+        {
+            GL_TRIANGLES, (unsigned int)indices.size(),
+            GL_UNSIGNED_INT, nullptr
+        };
+        DrawData data = {nullptr, va, vb, ib, nullptr};
+        return {ispec, data};
+    }
+
     void Renderer::bind(const DrawData& d)
     {
         d.va->bind();

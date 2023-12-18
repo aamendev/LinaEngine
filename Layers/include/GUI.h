@@ -6,7 +6,7 @@ namespace Lina { namespace Layer{
     class GUI : public Core::Layer
     {
         public:
-            GUI() {}
+            GUI();
             ~GUI() = default;
 
             virtual void onAttach() override;
@@ -19,7 +19,7 @@ namespace Lina { namespace Layer{
 
             void setDarkTheme();
         private:
-            //std::vector<Lina::GUI::Screen*> mScreens;
+            std::vector<Lina::GUI::Screen*> mScreens;
             //std::vector<Events::Event> screenEvents;
     };
 }}

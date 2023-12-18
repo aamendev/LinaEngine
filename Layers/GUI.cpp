@@ -4,6 +4,11 @@
 #include "../GUI/include/Spawner.h"
 #include "../core/headers/Application.h"
 namespace Lina{ namespace Layer{
+    GUI::GUI()
+    {
+        mScreens.push_back(new Lina::GUI::SpawnerScreen());
+        mScreens.push_back(new Lina::GUI::MainScreen());
+    }
     void GUI::onAttach()
     {
         IMGUI_CHECKVERSION();
@@ -33,14 +38,17 @@ namespace Lina{ namespace Layer{
 
         ImGui_ImplGlfw_InitForOpenGL(window, true);
         ImGui_ImplOpenGL3_Init("#version 410");
-        Lina::GUI::MainScreen::Setup();
-        Lina::GUI::SpawnerScreen::Setup();
+        for (auto s : mScreens)
+        {
+            s->Setup();
+        }
     }
     void GUI::onDetach()
     {
-
-//        Lina::GUI::MainScreen::Unload();
-        Lina::GUI::SpawnerScreen::Unload();
+        for (auto s: mScreens)
+        {
+            s->Unload();
+        }
         ImGui_ImplOpenGL3_Shutdown();
         ImGui_ImplGlfw_Shutdown();
         ImGui::DestroyContext();
@@ -56,8 +64,10 @@ namespace Lina{ namespace Layer{
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
-        Lina::GUI::MainScreen::Load();
-        Lina::GUI::SpawnerScreen::Load();
+        for (auto s : mScreens)
+        {
+            s->Load();
+        }
         //ImGui::ShowDemoWindow();
         //ImGuizmo::BeginFrame();
     }

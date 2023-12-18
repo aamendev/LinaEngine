@@ -1,0 +1,10 @@
+name,x,y,z,radius,texture
+sun,0.0f,0.0f,3.0f,0.3f,SolarSystem/2k_sun.jpg
+mercury,1.95f,0.0f,3.0f,0.3f,SolarSystem/2k_mercury.jpg
+venus,3.6f,0.0f,3.0f,0.3f,SolarSystem/2k_venus_surface.jpg
+earth,5.0f,0.0f,3.0f,0.3f,SolarSystem/2k_earth_daymap.jpg
+mars,7.5f,0.0f,3.0f,0.3f,SolarSystem/2k_mars.jpg
+jupiter,26.0f,0.0f,3.0f,0.3f,SolarSystem/2k_jupiter.jpg
+Saturn,47.5f,0.0f,3.0f,0.3f,SolarSystem/2k_saturn.jpg
+Uranus,96.0f,0.0f,3.0f,0.3f,SolarSystem/2k_uranus.jpg
+Neptune,150.5f,0.0f,3.0f,0.3f,SolarSystem/2k_neptune.jpg

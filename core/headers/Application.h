@@ -4,8 +4,8 @@
 #include "../headers/Root.h"
 #include "../../Memory/include/MemoryOverload.h"
 #include "Macros.h"
-#include "../../Layers/include/GUI.h"
 #include "../headers/Layer.h"
+#include "../../Layers/include/GUI.h"
 namespace Lina { namespace Core{
     struct ApplicationSpecifications
     {

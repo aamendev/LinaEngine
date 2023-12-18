@@ -15,7 +15,10 @@ namespace Lina{ namespace GUI{
     class Screen
     {
         public:
-            virtual ~Screen() = 0;
-            virtual std::vector<Events::Event> getEvents() = 0;
+            virtual ~Screen() {};
+            virtual b8 Setup() {};
+            virtual b8 Load() {};
+            virtual b8 Unload() {};
+            virtual std::vector<Events::Event> getEvents() {};
     };
 }}

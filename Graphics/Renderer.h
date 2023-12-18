@@ -31,6 +31,8 @@ namespace Lina{ namespace Manager{
             void drawIndexed(const IndexedDrawingSpecifications& ispec);
             std::pair<IndexedDrawingSpecifications, DrawData> setup(const ECS::Entity& entity);
             std::pair<IndexedDrawingSpecifications, DrawData> setup(const ECS::Entity&& entity);
+            std::pair<IndexedDrawingSpecifications, DrawData> setup(Graphics::Renderable&& r);
+            std::pair<IndexedDrawingSpecifications, DrawData> setup(Graphics::Renderable& r);
             void draw(const ECS::Entity& obj);
 
             void bind(const DrawData&);
